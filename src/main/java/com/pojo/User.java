@@ -3,7 +3,7 @@ package com.pojo;
 /**
  * Created by zhanzhicheng on 11/5/2017.
  */
-public abstract class User {
+public class User {
     private String account;
     private String password;
 
@@ -23,5 +23,6 @@ public abstract class User {
         this.password = password;
     }
 
-    public abstract boolean validate(String account,String password);
+    public boolean validate(String account,String password) { return false;}
+
 }

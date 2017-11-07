@@ -10,16 +10,13 @@ public class SanitoryStatus {
     private Date date;
     private Integer score;
 
-    //test
     public SanitoryStatus(Integer roomId, Date date, Integer score) {
         this.roomId = roomId;
         this.date = date;
         this.score = score;
     }
 
-    public Integer getRoomId() {
-        return roomId;
-    }
+    public Integer getRoomId() { return roomId;}
 
     public void setRoomId(Integer roomId) {
         this.roomId = roomId;
@@ -29,9 +26,7 @@ public class SanitoryStatus {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    public void setDate(Date date) { this.date = date;}
 
     public Integer getScore() {
         return score;

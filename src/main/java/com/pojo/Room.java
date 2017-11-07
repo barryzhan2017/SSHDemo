@@ -9,15 +9,15 @@ public class Room {
     private Integer id;
     private Integer size;
     private String gender;
-    private List<Student> studentList;
-    private List<SanitoryStatus> sanitoryStatusList;
+    private List<Student> students;
+    private List<SanitoryStatus> sanitoryStatuses;
 
-    public Room(Integer id, Integer size, String gender, List<Student> studentList, List<SanitoryStatus> sanitoryStatusList) {
+    public Room(Integer id, Integer size, String gender, List<Student> students, List<SanitoryStatus> sanitoryStatuses) {
         this.id = id;
         this.size = size;
         this.gender = gender;
-        this.studentList = studentList;
-        this.sanitoryStatusList = sanitoryStatusList;
+        this.students = students;
+        this.sanitoryStatuses = sanitoryStatuses;
     }
 
     public Integer getId() {
@@ -44,19 +44,19 @@ public class Room {
         this.gender = gender;
     }
 
-    public List<Student> getStudentList() {
-        return studentList;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
-    public List<SanitoryStatus> getSanitoryStatusList() {
-        return sanitoryStatusList;
+    public List<SanitoryStatus> getSanitoryStatuses() {
+        return sanitoryStatuses;
     }
 
-    public void setSanitoryStatusList(List<SanitoryStatus> sanitoryStatusList) {
-        this.sanitoryStatusList = sanitoryStatusList;
+    public void setSanitoryStatuses(List<SanitoryStatus> sanitoryStatuses) {
+        this.sanitoryStatuses = sanitoryStatuses;
     }
 }
