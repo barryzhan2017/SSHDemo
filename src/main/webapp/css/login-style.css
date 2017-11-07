@@ -1,0 +1,116 @@
+@CHARSET "UTF-8";
+/*login.jsp 样式*/
+
+h1{
+	margin-top: 50px;
+	margin-bottom: 30px;
+	font-size:30px;
+	}
+
+.login{
+	text-align:center;
+	/*background-color:rgb(194,239,208);*/
+	background-color:rgba(194,239,208,0.3);
+	martin:0 auto;
+	width:50%;
+	
+}
+.login-up{
+	margin-left:10%;
+	margin-right:10%;
+}
+
+@media \0screen\,screen\9{
+	.login-up{
+	position:relative;
+	}
+	.login{
+		
+		filter:Alpha(opacity=30);/* 只支持IE6、7、8、9 */
+  		position:static; /* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+  		*zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+	}
+}
+input[type="text"] {
+	background: url("../img/mail.png") no-repeat 13px 11px;
+	background-size: 25px;
+}
+
+input[type="password"] {
+	background: url("../img/password.png") no-repeat 13px 11px;
+	background-size: 25px;
+}
+ul.remember {
+	list-style: none;
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 30px;
+	text-align: left;
+	padding-left: 10px;
+}
+ul.remember li input[type="checkbox"]/*去掉之前的勾选框*/
+{
+	display: none;
+}
+ul.remember li input[type="checkbox"]+label {
+	position: relative;
+	padding-left: 30px;
+	border: #F0F8FF;
+	display: inline-block;
+	font-size: 16px;
+	color: #EEE;
+}
+
+ul.remember li input[type="checkbox"]+label span:first-child {
+	width: 17px;
+	height: 17px;
+	display: inline-block;
+	border: 2px solid #EEE;
+	position: absolute;
+	top: -1px;
+	left: 0;
+	bottom: 4px;
+}
+
+ul.remember li input[type="checkbox"]:checked+label span:first-child:before {
+	content:"";
+	background: url(../img/tick.png) no-repeat;
+	position: absolute;
+	left: 3px;
+	top: 3px;
+	font-size: 10px;
+	width: 10px;
+	height: 10px;
+}
+input[type="submit"]{
+	margin-right: 12px;
+	margin-left: 14px;
+	}
+input[type="reset"]{
+	margin-right: 10px;
+	margin-left: 12px;
+	}
+input[type="submit"],input[type="reset"]{/*设置 登录 取消 的input框*/
+	font-size: 16px;
+	font-weight: 700;
+	padding: 12px 50px;
+	background-color: rgb(194,239,208);
+	color: #FFF;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	float: left;
+	cursor: pointer;
+}
+input[type="submit"]:hover {  /*点击变色*/
+	background-color: #FFF;
+	color: #173148;
+}
+input[type="reset"]:hover {
+	background-color: #FFF;
+	color: #173148;
+}
+p{
+	margin-top:20%;
+	font-size:13px;
+}

@@ -1,0 +1,115 @@
+@CHARSET "UTF-8";
+h1{
+	margin-top: 70px;
+	margin-bottom: 30px;
+	text-align:center;
+	}
+tr{
+	height:50px;
+	margin-bottom:20px;
+}
+input[type="text"], input[type="password"] {
+	
+	font-size: 14px;
+	background: transparent;
+	border: 2px solid #FFF;
+	border-radius: 5px;
+	outline: none;
+	margin-bottom: 10px;
+	color: #FFF;
+	padding-top: 15px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+}
+input[class="date"]{
+	width:18%;
+}
+input[class="text"]{
+	width: 80%;
+}
+label.front{           /*表头*/
+	font-size: 17px;
+    display: block;
+    color: #fff;
+    padding-bottom: 10px;
+}
+.register{
+	/*background-color:rgb(194,239,208);*/
+	width90%;
+	martin:0 ;
+	}
+.attention{/*警示提示字体*/
+	font-size:10px;
+}
+/*
+.left-div,.right-div{
+	width: 35%;
+	background-color:rgb(194,239,208);
+	text-align:center;
+	martin:0 auto;
+	}
+.left-div{
+	float: left;
+	margin-left: 13%;
+	margin-right: 2%;	
+	}
+.right-div{
+	float: right;
+	margin-right: 13%;
+	margin-left: 2%;
+	} 
+*/
+.gender{
+	padding-right: 10px;
+	padding-left: 10px;
+	}
+
+/*
+.gender{
+	width:90%;
+	highth:100px;
+	}
+.boy,.girl{
+	padding-right: 5%;
+	padding-left: 5%;
+
+	}*/
+input[type="submit"],input[type="reset"]{/*设置 注册 取消 的input框*/
+	font-size: 16px;
+	font-weight: 700;
+	padding: 10px 25px;
+	
+	background-color: rgb(194,239,208);
+	color: #FFF;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	float: left;
+	cursor: pointer;
+}
+input[type="submit"]:hover {  /*点击变色*/
+	background-color: #FFF;
+	color: #173148;
+}
+input[type="reset"]:hover {
+	background-color: #FFF;
+	color: #173148;
+}
+input[type="reset"]{
+	margin-left: 10px;
+	margin-right:30%;
+}
+input[type="submit"]{
+	margin-left: 43%;
+	
+}
+.sub-or-re{
+	text-align: center;
+	margin-right: 38%;
+	margin-left: 42%;
+	}
+p{
+	font-size:13px;
+	margin-top:20px;
+}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.multipart.maxSize" value="1024000000"/>
+    <constant name="struts.i18n.encoding" value="utf-8"/>
+    <package name="ssh" extends="struts-default" namespace="/">
+
+        <action name="employee_*" class="employeeAction" method="{1}">
+        </action>
+        <action name="department_*" class="departmentAction" method="{1}">
+        </action>
+        <action name="post_*" class="com.action.PostAction" method="{1}">
+            <result name="findAll">/jsp/post/list.jsp</result>
+            <result name="findResultByTitle">/HomePage.jsp</result>
+            <result name="deleteSuccess" type="redirectAction">account_showPersonalInfo.action?currentPage=1</result>
+            <result name="savesucess" >/jsp/post/list.jsp</result>
+            <result name="savefail" >/jsp/post/list.jsp</result>
+            <result name="postPage">/jsp/post/postPage.jsp</result>
+            <result name="findByKeyword">/jsp/post/list.jsp</result>
+            <result name="*">/HomePage.jsp</result>
+
+
+        </action>
+        <action name="fileDownload_*" class="com.action.FileDownloadAction" method="{1}">
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+            </result>
+        </action>
+        <!--account  -->
+        <action name="account_modify" class="com.action.AccountAction" method="modify">
+            <result name="modifyInfo" >/personInfo.jsp</result>
+            <param name="allowedTypes">image/png,image/gif,image/jpg,image/bmp</param>
+        </action>
+        <action name="account_*" class="com.action.AccountAction" method="{1}">
+            <!--<result name="success" type="redirect">/HomePage.jsp</result>-->
+            <result name="input">/index.jsp</result>
+            <!--<result name="homepage" type="redirect">/HomePage.jsp</result>-->
+            <result name="success" type="redirectAction">post_findAll</result>
+            <result name="registerFail" >/register.jsp</result>
+            <result name="registerSuccess" type="redirect">/frame.jsp</result>
+            <result name="showInfo" >/personInfo.jsp</result>
+            <result name="modifyInfo" >/personInfo.jsp</result>
+            <result name="viewUserInfo" >/userInfo.jsp</result>
+            <result name="readPersonalImg" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>  
+                <param name="inputStream">inputStream</param>
+                <param name="contentDispositon">attachment;filename=$(filename)"></param>
+            </result>
+            <result name="readUserImg" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>  
+                <param name="inputStream">inputStream</param>
+                <param name="contentDispositon">attachment;filename=$(filename)"></param>
+            </result>
+        </action>
+        <action name="comment_*" class="com.action.CommentAction" method="{1}">
+            <result name="success"></result>
+        </action>
+
+
+        <action name="admin_*" class="com.action.AdminAction" method="{1}">
+            <result name="success">/administration/adminchoice.jsp</result>
+            <result name="input">/administration/index.jsp</result>
+            <result name="findAllUser">/administration/homepageU.jsp</result>
+            <result name="findAllPost">/administration/homepageP.jsp</result>
+            <result name="findUserByNameAndPage">/administration/homepageU.jsp</result>
+            <result name="findUserByid">/administration/homepageU.jsp</result>
+            <result name="findPostByKeyWord">/administration/homepageP.jsp</result>
+            <result name="deletePost">/administration/homepageP.jsp</result>
+            <result name="deleteAccount">/administration/homepageU.jsp</result>
+            <result name="viewUserInfo">/administration/personInfo.jsp</result>
+            <result name="viewPostPage">/administration/PostPage.jsp</result>
+        </action>
+    </package>
+</struts>

@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+body{ 
+			font-family: 'Roboto', sans-serif;
+			color: #ffffff;
+			background-attachment: fixed;
+			background-position: center;
+			background-size: cover;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background:url(../img/bg.png) no-repeat top center #96CEB4;
+}
+a{
+	color:rgb(194,239,208);
+}
+a:hover{
+	color:#173148;
+}

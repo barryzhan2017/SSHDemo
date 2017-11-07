@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.pojo.Post" table="post" lazy="false" dynamic-update="true">
+        <id name="id" column="id" type="java.lang.Integer">
+            <generator class="identity"/>
+        </id>
+        <property name="title" column="title" type="java.lang.String"/>
+        <property name="category" column="category" type="java.lang.String"/>
+        <many-to-one name="poster" column="poster" class="com.pojo.Account" lazy="false"/>
+        <property name="time" column="time" type="java.util.Date"/>
+        <property name="content" column="content" type="java.lang.String"/>
+        <many-to-one name="resource" column="resource" class="com.pojo.Resource"
+                      unique="true" cascade="all" lazy="false"/>
+        <list name="comments" cascade="all" lazy="false">
+            <key column="target_post"/>
+            <index column="floor" type="java.lang.Integer"/>
+            <one-to-many class="com.pojo.Comment"/>
+        </list>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:bean="http://www.alibaba.com/schema/stat"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/schema/stat http://www.alibaba.com/schema/stat.xsd">
+    <!--扫描外部配置文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!--配置连接池-->
+    <!--2.Druid数据池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <!--配置连接池属性-->
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="3" />
+        <property name="minIdle" value="3" />
+        <property name="maxActive" value="20" />
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="60000" />
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <property name="validationQuery" value="SELECT 1" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="stat" />
+      
+    </bean>
+    <!--配置Hibernate整合Spring-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!--注入连接池-->
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">false</prop>  <!--运行时候是否在控制台输出SQL语句-->
+                <prop key="hibernate.hbm2ddl.auto">update</prop><!--运行时候是否在数据库自动生成数据表-->
+                <prop key="hibernate.format_sql">true</prop><!--是否对输出sql进行格式化-->
+            </props>
+        </property>
+        <!--配置Hibernate的映射文件-->
+        <property name="mappingResources">
+            <list>
+                <value>hbm/Post.hbm.xml</value>
+                <value>hbm/Account.hbm.xml</value>
+                <value>hbm/Comment.hbm.xml</value>
+                <value>hbm/Resource.hbm.xml</value>
+                <value>hbm/Administrator.hbm.xml</value>
+            </list>
+        </property>
+        <property name="packagesToScan">
+            <list>
+                <value>com.koali.pojo</value>
+            </list>
+        </property>
+
+    </bean>
+    <!--Action交给Spring来管理-->
+    <bean id="postAction" class="com.action.PostAction" scope="prototype">
+        <property name="postService" ref="postService"/>
+    </bean>
+    <bean id="accountAction" class="com.action.AccountAction" scope="prototype">
+        <property name="accountService" ref="accountService"/>
+        <property name="postService" ref="postService"/>
+    </bean>
+    <bean id="fileDownloadAction" class="com.action.FileDownloadAction" scope="prototype">
+        <property name="fileDownloadService" ref="fileDownloadService"/>
+    </bean>
+    <bean id="commentAction" class="com.action.CommentAction" scope="prototype">
+    <property name="commentService" ref="commentService"/>
+    </bean>
+
+    <bean id="adminAction" class="com.action.AdminAction" scope="prototype">
+        <property name="adminService" ref="adminService"/>
+    </bean>
+    <!--配置Service层的类-->
+
+    <bean id="postService" class="com.service.Impl.PostServiceImpl">
+    <property name="postDao" ref="postDao"/>
+    </bean>
+    <bean id="accountService" class="com.service.Impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+    <bean id="commentService" class="com.service.Impl.CommentServiceImpl">
+        <property name="commentDao" ref="commentDao"/>
+        <property name="postDao" ref="postDao"/>
+    </bean>
+    <bean id="adminService" class="com.service.Impl.AdminServiceImpl">
+        <property name="adminDao" ref="adminDao"/>
+        <property name="postDao" ref="postDao"/>
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+    <bean id="fileDownloadService" class="com.service.Impl.FileDownloadServiceImpl">
+    </bean>
+    <!--配置Dao层的类-->
+
+    <bean id="postDao" class="com.dao.Impl.PostDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="accountDao" class="com.dao.Impl.AccountDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="commentDao" class="com.dao.Impl.CommentDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="adminDao" class="com.dao.Impl.AdminDaoImp">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--配置事务管理-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--开启事务注解-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>
