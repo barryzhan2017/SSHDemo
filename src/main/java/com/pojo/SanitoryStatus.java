@@ -10,6 +10,7 @@ public class SanitoryStatus {
     private Date date;
     private Integer score;
 
+    //test
     public SanitoryStatus(Integer roomId, Date date, Integer score) {
         this.roomId = roomId;
         this.date = date;
