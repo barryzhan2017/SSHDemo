@@ -16,9 +16,7 @@ public class SanitoryStatus {
         this.score = score;
     }
 
-    public Integer getRoomId() {
-        return roomId;
-    }
+    public Integer getRoomId() { return roomId;}
 
     public void setRoomId(Integer roomId) {
         this.roomId = roomId;
@@ -28,9 +26,7 @@ public class SanitoryStatus {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    public void setDate(Date date) { this.date = date;}
 
     public Integer getScore() {
         return score;

@@ -6,16 +6,16 @@ import java.util.List;
  * Created by zhanzhicheng on 11/5/2017.
  * Git
  */
-public class Instructor extends User {
+public class Instructor {
 
     private Integer chargedBuildingId;
-    private List<Student> studentList;
-    private List<Room> roomList;
+    private List<Student> students;
+    private List<Room> rooms;
 
-    public Instructor(Integer chargedBuildingId, List<Student> studentList, List<Room> roomList) {
+    public Instructor(Integer chargedBuildingId, List<Student> students, List<Room> rooms) {
         this.chargedBuildingId = chargedBuildingId;
-        this.studentList = studentList;
-        this.roomList = roomList;
+        this.students = students;
+        this.rooms = rooms;
     }
 
     public Integer getChargedBuildingId() {
@@ -26,24 +26,19 @@ public class Instructor extends User {
         this.chargedBuildingId = chargedBuildingId;
     }
 
-    public List<Student> getStudentList() {
-        return studentList;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
-    public List<Room> getRoomList() {
-        return roomList;
+    public List<Room> getRooms() {
+        return rooms;
     }
 
-    public void setRoomList(List<Room> roomList) {
-        this.roomList = roomList;
-    }
-
-    @Override
-    public boolean validate(String account, String password) {
-        return false;
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 }
