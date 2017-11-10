@@ -11,10 +11,8 @@ public class DormitoryBuilding {
     private Integer floor;
     private List<Room> rooms;
 
-    public DormitoryBuilding(Integer id, Integer floor, List<Room> rooms) {
-        this.id = id;
-        this.floor = floor;
-        this.rooms = rooms;
+    public DormitoryBuilding() {
+
     }
 
     public Integer getId() {

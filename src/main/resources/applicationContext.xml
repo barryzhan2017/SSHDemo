@@ -56,71 +56,77 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
         <!--配置Hibernate的映射文件-->
         <property name="mappingResources">
             <list>
-                <value>hbm/Post.hbm.xml</value>
-                <value>hbm/Account.hbm.xml</value>
-                <value>hbm/Comment.hbm.xml</value>
-                <value>hbm/Resource.hbm.xml</value>
-                <value>hbm/Administrator.hbm.xml</value>
+                <value>hbm/BorrowingKey.hbm.xml</value>
+                <value>hbm/DormitoryStaff.hbm.xml</value>
+                <value>hbm/DormitoryBuilding.hbm.xml</value>
+                <value>hbm/Instructor.hbm.xml</value>
+                <value>hbm/RepairingEquipment.hbm.xml</value>
+                <value>hbm/Room.hbm.xml</value>
+                <value>hbm/SanitaryStatus.hbm.xml</value>
+                <value>hbm/SpeicalAction.hbm.xml</value>
+                <value>hbm/Student.hbm.xml</value>
+                <value>hbm/SystemAdministrator.hbm.xml</value>
+                <value>hbm/VisitorRecord.hbm.xml</value>
             </list>
         </property>
         <property name="packagesToScan">
             <list>
-                <value>com.koali.pojo</value>
+                <value>com.pojo</value>
             </list>
         </property>
 
     </bean>
     <!--Action交给Spring来管理-->
-    <bean id="postAction" class="com.action.PostAction" scope="prototype">
-        <property name="postService" ref="postService"/>
-    </bean>
-    <bean id="accountAction" class="com.action.AccountAction" scope="prototype">
-        <property name="accountService" ref="accountService"/>
-        <property name="postService" ref="postService"/>
-    </bean>
-    <bean id="fileDownloadAction" class="com.action.FileDownloadAction" scope="prototype">
-        <property name="fileDownloadService" ref="fileDownloadService"/>
-    </bean>
-    <bean id="commentAction" class="com.action.CommentAction" scope="prototype">
-    <property name="commentService" ref="commentService"/>
-    </bean>
+    <!--<bean id="postAction" class="com.action.PostAction" scope="prototype">-->
+        <!--<property name="postService" ref="postService"/>-->
+    <!--</bean>-->
+    <!--<bean id="accountAction" class="com.action.AccountAction" scope="prototype">-->
+        <!--<property name="accountService" ref="accountService"/>-->
+        <!--<property name="postService" ref="postService"/>-->
+    <!--</bean>-->
+    <!--<bean id="fileDownloadAction" class="com.action.FileDownloadAction" scope="prototype">-->
+        <!--<property name="fileDownloadService" ref="fileDownloadService"/>-->
+    <!--</bean>-->
+    <!--<bean id="commentAction" class="com.action.CommentAction" scope="prototype">-->
+    <!--<property name="commentService" ref="commentService"/>-->
+    <!--</bean>-->
 
-    <bean id="adminAction" class="com.action.AdminAction" scope="prototype">
-        <property name="adminService" ref="adminService"/>
-    </bean>
-    <!--配置Service层的类-->
+    <!--<bean id="adminAction" class="com.action.AdminAction" scope="prototype">-->
+        <!--<property name="adminService" ref="adminService"/>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;配置Service层的类&ndash;&gt;-->
 
-    <bean id="postService" class="com.service.Impl.PostServiceImpl">
-    <property name="postDao" ref="postDao"/>
-    </bean>
-    <bean id="accountService" class="com.service.Impl.AccountServiceImpl">
-        <property name="accountDao" ref="accountDao"/>
-    </bean>
-    <bean id="commentService" class="com.service.Impl.CommentServiceImpl">
-        <property name="commentDao" ref="commentDao"/>
-        <property name="postDao" ref="postDao"/>
-    </bean>
-    <bean id="adminService" class="com.service.Impl.AdminServiceImpl">
-        <property name="adminDao" ref="adminDao"/>
-        <property name="postDao" ref="postDao"/>
-        <property name="accountDao" ref="accountDao"/>
-    </bean>
-    <bean id="fileDownloadService" class="com.service.Impl.FileDownloadServiceImpl">
-    </bean>
-    <!--配置Dao层的类-->
+    <!--<bean id="postService" class="com.service.Impl.PostServiceImpl">-->
+    <!--<property name="postDao" ref="postDao"/>-->
+    <!--</bean>-->
+    <!--<bean id="accountService" class="com.service.Impl.AccountServiceImpl">-->
+        <!--<property name="accountDao" ref="accountDao"/>-->
+    <!--</bean>-->
+    <!--<bean id="commentService" class="com.service.Impl.CommentServiceImpl">-->
+        <!--<property name="commentDao" ref="commentDao"/>-->
+        <!--<property name="postDao" ref="postDao"/>-->
+    <!--</bean>-->
+    <!--<bean id="adminService" class="com.service.Impl.AdminServiceImpl">-->
+        <!--<property name="adminDao" ref="adminDao"/>-->
+        <!--<property name="postDao" ref="postDao"/>-->
+        <!--<property name="accountDao" ref="accountDao"/>-->
+    <!--</bean>-->
+    <!--<bean id="fileDownloadService" class="com.service.Impl.FileDownloadServiceImpl">-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;配置Dao层的类&ndash;&gt;-->
 
-    <bean id="postDao" class="com.dao.Impl.PostDaoImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="accountDao" class="com.dao.Impl.AccountDaoImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="commentDao" class="com.dao.Impl.CommentDaoImpl">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="adminDao" class="com.dao.Impl.AdminDaoImp">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
+    <!--<bean id="postDao" class="com.dao.Impl.PostDaoImpl">-->
+        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</bean>-->
+    <!--<bean id="accountDao" class="com.dao.Impl.AccountDaoImpl">-->
+        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</bean>-->
+    <!--<bean id="commentDao" class="com.dao.Impl.CommentDaoImpl">-->
+        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</bean>-->
+    <!--<bean id="adminDao" class="com.dao.Impl.AdminDaoImp">-->
+        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</bean>-->
     <!--配置事务管理-->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>

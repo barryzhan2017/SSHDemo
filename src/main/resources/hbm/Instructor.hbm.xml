@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.pojo.Instructor" table="instructor" lazy="false" dynamic-update="true">
+        <id name="id" column="id" type="java.lang.Integer">
+        </id>
+        <property name="chargedBuildingId" column="charged_building_id" type="java.lang.Integer"/>
+        <property name="name" column="name" type="java.lang.String"/>
+        <property name="account" column="account" type="java.lang.String"/>
+        <property name="password" column="password" type="java.lang.String"/>
+        <many-to-one name="systemAdministratorId" column="system_administrator_id" class="com.pojo.SystemAdministrator" lazy="false"/>
+        <list name="students" cascade="all" lazy="false">
+            <key column="instructor_id"/>
+            <index column="[index]" type="java.lang.Integer"/>
+            <one-to-many class="com.pojo.Student"/>
+        </list>
+        <list name="rooms" cascade="all" lazy="false">
+            <key column="instructor_id"/>
+            <index column="[index]" type="java.lang.Integer"/>
+            <one-to-many class="com.pojo.Room"/>
+        </list>
+
+    </class>
+</hibernate-mapping>

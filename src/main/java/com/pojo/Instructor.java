@@ -6,16 +6,24 @@ import java.util.List;
  * Created by zhanzhicheng on 11/5/2017.
  * Git
  */
-public class Instructor {
+public class Instructor extends User{
+
 
     private Integer chargedBuildingId;
     private List<Student> students;
     private List<Room> rooms;
+    private Integer systemAdministratorId;
 
-    public Instructor(Integer chargedBuildingId, List<Student> students, List<Room> rooms) {
-        this.chargedBuildingId = chargedBuildingId;
-        this.students = students;
-        this.rooms = rooms;
+    public Instructor() {
+
+    }
+
+    public Integer getSystemAdministratorId() {
+        return systemAdministratorId;
+    }
+
+    public void setSystemAdministratorId(Integer systemAdministratorId) {
+        this.systemAdministratorId = systemAdministratorId;
     }
 
     public Integer getChargedBuildingId() {

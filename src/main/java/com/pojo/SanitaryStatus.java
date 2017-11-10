@@ -5,15 +5,22 @@ import java.util.Date;
 /**
  * Created by zhanzhicheng on 11/7/2017.
  */
-public class SanitoryStatus {
+public class SanitaryStatus {
+    private Integer id;
     private Integer roomId;
     private Date date;
     private Integer score;
 
-    public SanitoryStatus(Integer roomId, Date date, Integer score) {
-        this.roomId = roomId;
-        this.date = date;
-        this.score = score;
+    public SanitaryStatus() {
+
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getRoomId() { return roomId;}
