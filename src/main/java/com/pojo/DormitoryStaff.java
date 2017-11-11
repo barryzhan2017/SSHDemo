@@ -1,34 +1,38 @@
 package com.pojo;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**
  * Created by zhanzhicheng on 11/7/2017.
  */
 public class DormitoryStaff extends User {
-    private Integer chargedBuidingId;
+    private Integer chargedBuildingId;
     private List<RepairingEquipment> repairingEquipments;
     private List<BorrowingKey> borrowingKeys;
     private List<VisitorRecord> visitorRecords;
-    private List<SpecialAction> speicalActions;
+    private List<SpecialAction> specialActions;
     private List<Student> students;
+    private Integer systemAdministratorId;
 
-    public DormitoryStaff(Integer chargedBuidingId, List<RepairingEquipment> repairingEquipments,
-                          List<BorrowingKey> borrowingKeys, List<VisitorRecord> visitorRecords, List<SpecialAction> speicalActions, List<Student> students) {
-        this.chargedBuidingId = chargedBuidingId;
-        this.repairingEquipments = repairingEquipments;
-        this.borrowingKeys = borrowingKeys;
-        this.visitorRecords = visitorRecords;
-        this.speicalActions = speicalActions;
-        this.students = students;
+    public DormitoryStaff() {
+
     }
 
-    public Integer getChargedBuidingId() {
-        return chargedBuidingId;
+    public Integer getSystemAdministratorId() {
+        return systemAdministratorId;
     }
 
-    public void setChargedBuidingId(Integer chargedBuidingId) {
-        this.chargedBuidingId = chargedBuidingId;
+    public void setSystemAdministratorId(Integer systemAdministratorId) {
+        this.systemAdministratorId = systemAdministratorId;
+    }
+
+    public Integer getChargedBuildingId() {
+        return chargedBuildingId;
+    }
+
+    public void setChargedBuildingId(Integer chargedBuildingId) {
+        this.chargedBuildingId = chargedBuildingId;
     }
 
     public List<RepairingEquipment> getRepairingEquipments() {
@@ -55,12 +59,12 @@ public class DormitoryStaff extends User {
         this.visitorRecords = visitorRecords;
     }
 
-    public List<SpecialAction> getSpeicalActions() {
-        return speicalActions;
+    public List<SpecialAction> getSpecialActions() {
+        return specialActions;
     }
 
-    public void setSpeicalActions(List<SpecialAction> speicalActions) {
-        this.speicalActions = speicalActions;
+    public void setSpecialActions(List<SpecialAction> specialActions) {
+        this.specialActions = specialActions;
     }
 
     public List<Student> getStudents() {

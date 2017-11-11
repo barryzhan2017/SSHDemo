@@ -13,7 +13,6 @@ PageBean<T> {
     private int totalPage; // 总页数
     private List<T> list; // 每页显示的数据
     private String type;//当前是哪种页面
-    private Post post;
     public String getType() {
         return type;
     }
@@ -21,14 +20,6 @@ PageBean<T> {
     public void setType(String type) {
         this.type = type;
 
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
     }
 
     public int getCurrPage() {

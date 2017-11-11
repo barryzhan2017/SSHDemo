@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.pojo.Room" table="room" lazy="false" dynamic-update="true">
+        <id name="id" column="id" type="java.lang.Integer">
+            <generator class="identity"></generator>
+        </id>
+        <property name="roomId" column="room_id" type="java.lang.Integer"/>
+        <property name="size" column="size" type="java.lang.Integer"/>
+        <property name="gender" column="gender" type="java.lang.String"/>
+
+        <many-to-one name="instructorId" column="instructor_id" class="com.pojo.Instructor" lazy="false"/>
+
+        <many-to-one name="buildingId" column="building_id" class="com.pojo.DormitoryBuilding" lazy="false"/>
+
+        <list name="repairingEquipments" cascade="all" lazy="false">
+            <key column="room_id"/>
+            <index column="[index]" type="java.lang.Integer"/>
+            <one-to-many class="com.pojo.RepairingEquipment"/>
+        </list>
+
+        <list name="sanitaryStatuses" cascade="all" lazy="false">
+            <key column="room_id"/>
+            <index column="[index]" type="java.lang.Integer"/>
+            <one-to-many class="com.pojo.SanitaryStatus"/>
+        </list>
+
+        <list name="students" cascade="all" lazy="false">
+            <key column="room_id"/>
+            <index column="[index]" type="java.lang.Integer"/>
+            <one-to-many class="com.pojo.Student"/>
+        </list>
+
+    </class>
+</hibernate-mapping>

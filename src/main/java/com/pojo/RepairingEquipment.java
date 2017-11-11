@@ -6,16 +6,32 @@ import java.util.Date;
  * Created by zhanzhicheng on 11/7/2017.
  */
 public class RepairingEquipment {
+    private Integer id;
     private Integer roomId;
     private String  description;
     private Date date;
-    private boolean isRepaired;
+    private boolean repaired;
+    private Integer dormitoryStaffId;
 
-    public RepairingEquipment(Integer roomId, String description, Date date, boolean isRepaired) {
-        this.roomId = roomId;
-        this.description = description;
-        this.date = date;
-        this.isRepaired = isRepaired;
+    public RepairingEquipment() {
+
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getDormitoryStaffId() {
+        return dormitoryStaffId;
+    }
+
+    public void setDormitoryStaffId(Integer dormitoryStaffId) {
+        this.dormitoryStaffId = dormitoryStaffId;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getRoomId() {
@@ -43,10 +59,10 @@ public class RepairingEquipment {
     }
 
     public boolean isRepaired() {
-        return isRepaired;
+        return repaired;
     }
 
     public void setRepaired(boolean repaired) {
-        isRepaired = repaired;
+        this.repaired = repaired;
     }
 }

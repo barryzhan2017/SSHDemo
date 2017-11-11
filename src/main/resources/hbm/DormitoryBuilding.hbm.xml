@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.pojo.DormitoryBuilding" table="dormitory_building" lazy="false" dynamic-update="true">
+        <id name="id" column="id" type="java.lang.Integer">
+        </id>
+        <property name="floor" column="floor" type="java.lang.Integer"/>
+
+        <list name="rooms" cascade="all" lazy="false">
+            <key column="building_id"/>
+            <index column="[index]" type="java.lang.Integer"/>
+            <one-to-many class="com.pojo.Room"/>
+        </list>
+
+    </class>
+</hibernate-mapping>

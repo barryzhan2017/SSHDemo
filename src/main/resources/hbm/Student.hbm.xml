@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.pojo.Student" table="student" lazy="false" dynamic-update="true">
+        <id name="id" column="id" type="java.lang.Integer">
+        </id>
+        <property name="name" column="name" type="java.lang.String"/>
+        <property name="major" column="major" type="java.lang.String"/>
+        <property name="photo" column="photo" type="byte[]"/>
+        <property name="grade" column="grade" type="java.lang.Integer"/>
+        <property name="phoneNumber" column="phone_number" type="java.lang.Integer"/>
+        <property name="college" column="college" type="java.lang.String"/>
+        <property name="gender" column="gender" type="java.lang.String"/>
+        <property name="buildingId" column="building_id" type="java.lang.Integer"/>
+        <property name="bedId" column="bed_id" type="java.lang.Integer"/>
+        <property name="classNum" column="class_num" type="java.lang.Integer"/>
+        <property name="roomLeader" column="room_leader" type="java.lang.Boolean"/>
+        <property name="legalElectricalAppliance" column="legal_electrical_appliance" type="java.lang.Boolean"/>
+        <property name="onCampus" column="on_campus" type="java.lang.Boolean"/>
+        <many-to-one name="roomId" column="room_id" class="com.pojo.Room" lazy="false"/>
+        <many-to-one name="dormitoryStaffId" column="dormitory_staff_id" class="com.pojo.DormitoryStaff" lazy="false"/>
+        <many-to-one name="instructorId" column="instructor_id" class="com.pojo.Instructor" lazy="false"/>
+    </class>
+</hibernate-mapping>

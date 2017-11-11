@@ -18,27 +18,30 @@ public class Student {
     private Integer roomId;
     private Integer bedId;
     private Integer classNum;
-    private Boolean isRoomLeader;
+    private Boolean RoomLeader;
     private Boolean legalElectricalAppliance;
     private Boolean onCampus;
+    private Integer dormitoryStaffId;
+    private Integer instructorId;
 
-    public Student(Integer id, String name, String major, Byte[] photo, Integer grade, Integer phoneNumber,
-                   String college, String gender, Integer buildingId, Integer roomId, Integer bedId, Integer classNum) {
-        this.id = id;
-        this.name = name;
-        this.major = major;
-        this.photo = photo;
-        this.grade = grade;
-        this.phoneNumber = phoneNumber;
-        this.college = college;
-        this.gender = gender;
-        this.buildingId = buildingId;
-        this.roomId = roomId;
-        this.bedId = bedId;
-        this.classNum = classNum;
-        this.isRoomLeader = false;
-        this.legalElectricalAppliance = true;
-        this.onCampus = true;
+    public Student() {
+
+    }
+
+    public Integer getDormitoryStaffId() {
+        return dormitoryStaffId;
+    }
+
+    public void setDormitoryStaffId(Integer dormitoryStaffId) {
+        this.dormitoryStaffId = dormitoryStaffId;
+    }
+
+    public Integer getInstructorId() {
+        return instructorId;
+    }
+
+    public void setInstructorId(Integer instructorId) {
+        this.instructorId = instructorId;
     }
 
     public Integer getId() {
@@ -138,11 +141,11 @@ public class Student {
     }
 
     public Boolean getRoomLeader() {
-        return isRoomLeader;
+        return RoomLeader;
     }
 
     public void setRoomLeader(Boolean roomLeader) {
-        isRoomLeader = roomLeader;
+        RoomLeader = roomLeader;
     }
 
     public Boolean getLegalElectricalAppliance() {

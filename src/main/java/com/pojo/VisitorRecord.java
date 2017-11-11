@@ -6,18 +6,32 @@ import java.util.Date;
  * Created by zhanzhicheng on 11/7/2017.
  */
 public class VisitorRecord {
-    private String name;
     private Integer id;
+    private String name;
+    private Integer visitorId;
     private String reason;
     private Date date;
     private boolean leaveStatus;
+    private Integer dormitoryStaffId;
 
-    public VisitorRecord(String name, Integer id, String reason, Date date, boolean leaveStatus) {
-        this.name = name;
-        this.id = id;
-        this.reason = reason;
-        this.date = date;
-        this.leaveStatus = leaveStatus;
+    public VisitorRecord() {
+
+    }
+
+    public Integer getDormitoryStaffId() {
+        return dormitoryStaffId;
+    }
+
+    public void setDormitoryStaffId(Integer dormitoryStaffId) {
+        this.dormitoryStaffId = dormitoryStaffId;
+    }
+
+    public Integer getVisitorId() {
+        return visitorId;
+    }
+
+    public void setVisitorId(Integer visitorId) {
+        this.visitorId = visitorId;
     }
 
     public String getName() {

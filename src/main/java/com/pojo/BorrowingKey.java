@@ -6,16 +6,24 @@ import java.util.Date;
  * Created by zhanzhicheng on 11/7/2017.
  */
 public class BorrowingKey {
+    private Integer id;
     private Integer studentId;
     private String  studentName;
     private Integer roomId;
     private Date date;
+    private Integer dormitoryStaffId;
+    private Boolean returned;
 
-    public BorrowingKey(Integer studentId, String studentName, Integer roomId, Date date) {
-        this.studentId = studentId;
-        this.studentName = studentName;
-        this.roomId = roomId;
-        this.date = date;
+    public BorrowingKey() {
+
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getStudentId() {
@@ -48,5 +56,21 @@ public class BorrowingKey {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Integer getDormitoryStaffId() {
+        return dormitoryStaffId;
+    }
+
+    public void setDormitoryStaffId(Integer dormitoryStaffId) {
+        this.dormitoryStaffId = dormitoryStaffId;
+    }
+
+    public Boolean getReturned() {
+        return returned;
+    }
+
+    public void setReturned(Boolean returned) {
+        this.returned = returned;
     }
 }
