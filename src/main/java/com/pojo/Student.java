@@ -7,41 +7,24 @@ import javax.persistence.criteria.CriteriaBuilder;
  */
 public class Student {
     private Integer id;
-    private  String name;
+    private String name;
     private String major;
-    private  Byte[] photo;
+    private Byte[] photo;
     private Integer grade;
     private Integer phoneNumber;
     private String college;
     private String gender;
-    private Integer buildingId;
-    private Integer roomId;
+    private Room room;//不能写成Integer roomID
     private Integer bedId;
     private Integer classNum;
     private Boolean RoomLeader;
     private Boolean legalElectricalAppliance;
     private Boolean onCampus;
-    private Integer dormitoryStaffId;
-    private Integer instructorId;
+    private DormitoryStaff dormitoryStaff;
+    private Instructor instructor;
 
     public Student() {
 
-    }
-
-    public Integer getDormitoryStaffId() {
-        return dormitoryStaffId;
-    }
-
-    public void setDormitoryStaffId(Integer dormitoryStaffId) {
-        this.dormitoryStaffId = dormitoryStaffId;
-    }
-
-    public Integer getInstructorId() {
-        return instructorId;
-    }
-
-    public void setInstructorId(Integer instructorId) {
-        this.instructorId = instructorId;
     }
 
     public Integer getId() {
@@ -108,20 +91,12 @@ public class Student {
         this.gender = gender;
     }
 
-    public Integer getBuildingId() {
-        return buildingId;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setBuildingId(Integer buildingId) {
-        this.buildingId = buildingId;
-    }
-
-    public Integer getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public Integer getBedId() {
@@ -162,5 +137,21 @@ public class Student {
 
     public void setOnCampus(Boolean onCampus) {
         this.onCampus = onCampus;
+    }
+
+    public DormitoryStaff getDormitoryStaff() {
+        return dormitoryStaff;
+    }
+
+    public void setDormitoryStaff(DormitoryStaff dormitoryStaff) {
+        this.dormitoryStaff = dormitoryStaff;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 }

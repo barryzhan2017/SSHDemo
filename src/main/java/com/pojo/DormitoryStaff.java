@@ -13,18 +13,18 @@ public class DormitoryStaff extends User {
     private List<VisitorRecord> visitorRecords;
     private List<SpecialAction> specialActions;
     private List<Student> students;
-    private Integer systemAdministratorId;
+    private SystemAdministrator systemAdministrator;
 
     public DormitoryStaff() {
 
     }
 
-    public Integer getSystemAdministratorId() {
-        return systemAdministratorId;
+    public SystemAdministrator getSystemAdministrator() {
+        return systemAdministrator;
     }
 
-    public void setSystemAdministratorId(Integer systemAdministratorId) {
-        this.systemAdministratorId = systemAdministratorId;
+    public void setSystemAdministrator(SystemAdministrator systemAdministrator) {
+        this.systemAdministrator = systemAdministrator;
     }
 
     public Integer getChargedBuildingId() {

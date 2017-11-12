@@ -7,11 +7,10 @@
         <id name="id" column="id" type="java.lang.Integer">
             <generator class="identity"/>
         </id>
-        <property name="studentId" column="student_id" type="java.lang.Integer"/>
-        <property name="studentName" column="student_name" type="java.lang.String"/>
-        <property name="roomId" column="room_id" type="java.lang.Integer"/>
+        <many-to-one name="student" column="student_id" class="com.pojo.Student" lazy="false"/>
+        <many-to-one name="room" column="room_id" class="com.pojo.Room" lazy="false"/>
         <property name="date" column="date" type="java.util.Date"/>
-        <many-to-one name="dormitoryStaffId" column="dormitory_staff_id" class="com.pojo.DormitoryStaff" lazy="false"/>
+        <many-to-one name="dormitoryStaff" column="dormitory_staff_id" class="com.pojo.DormitoryStaff" lazy="false"/>
         <property name="returned" column="returned" type="java.lang.Boolean"/>
     </class>
 </hibernate-mapping>
