@@ -10,7 +10,7 @@
         <property name="name" column="name" type="java.lang.String"/>
         <property name="account" column="account" type="java.lang.String"/>
         <property name="password" column="password" type="java.lang.String"/>
-        <many-to-one name="systemAdministratorId" column="system_administrator_id" class="com.pojo.SystemAdministrator" lazy="false"/>
+        <many-to-one name="systemAdministrator" column="system_administrator_id" class="com.pojo.SystemAdministrator" lazy="false"/>
         <list name="students" cascade="all" lazy="false">
             <key column="dormitory_staff_id"/>
             <index column="[index]" type="java.lang.Integer"/>

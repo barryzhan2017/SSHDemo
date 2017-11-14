@@ -9,10 +9,10 @@
     <constant name="struts.i18n.encoding" value="utf-8"/>
     <package name="ssh" extends="struts-default" namespace="/">
 
-        <action name="employee_*" class="employeeAction" method="{1}">
+        <action name="student_*" class="com.action.StudentManagementAction" method="{1}">
+            <result name="success"></result>
         </action>
-        <action name="department_*" class="departmentAction" method="{1}">
-        </action>
+
         <action name="post_*" class="com.action.PostAction" method="{1}">
             <result name="findAll">/jsp/post/list.jsp</result>
             <result name="findResultByTitle">/HomePage.jsp</result>

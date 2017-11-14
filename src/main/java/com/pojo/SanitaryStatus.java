@@ -7,13 +7,14 @@ import java.util.Date;
  */
 public class SanitaryStatus {
     private Integer id;
-    private Integer roomId;
+    private Room room;
     private Date date;
     private Integer score;
 
     public SanitaryStatus() {
 
     }
+
 
     public Integer getId() {
         return id;
@@ -23,17 +24,21 @@ public class SanitaryStatus {
         this.id = id;
     }
 
-    public Integer getRoomId() { return roomId;}
+    public Room getRoom() {
+        return room;
+    }
 
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) { this.date = date;}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public Integer getScore() {
         return score;

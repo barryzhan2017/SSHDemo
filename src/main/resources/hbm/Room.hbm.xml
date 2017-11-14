@@ -7,13 +7,14 @@
         <id name="id" column="id" type="java.lang.Integer">
             <generator class="identity"></generator>
         </id>
+
         <property name="roomId" column="room_id" type="java.lang.Integer"/>
         <property name="size" column="size" type="java.lang.Integer"/>
         <property name="gender" column="gender" type="java.lang.String"/>
 
-        <many-to-one name="instructorId" column="instructor_id" class="com.pojo.Instructor" lazy="false"/>
+        <many-to-one name="instructor" column="instructor_id" class="com.pojo.Instructor" lazy="false"/>
 
-        <many-to-one name="buildingId" column="building_id" class="com.pojo.DormitoryBuilding" lazy="false"/>
+        <many-to-one name="dormitoryBuilding" column="building_id" class="com.pojo.DormitoryBuilding" lazy="false"/>
 
         <list name="repairingEquipments" cascade="all" lazy="false">
             <key column="room_id"/>

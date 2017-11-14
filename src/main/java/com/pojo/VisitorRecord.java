@@ -12,18 +12,18 @@ public class VisitorRecord {
     private String reason;
     private Date date;
     private boolean leaveStatus;
-    private Integer dormitoryStaffId;
+    private DormitoryStaff dormitoryStaff;
 
     public VisitorRecord() {
 
     }
 
-    public Integer getDormitoryStaffId() {
-        return dormitoryStaffId;
+    public DormitoryStaff getDormitoryStaff() {
+        return dormitoryStaff;
     }
 
-    public void setDormitoryStaffId(Integer dormitoryStaffId) {
-        this.dormitoryStaffId = dormitoryStaffId;
+    public void setDormitoryStaff(DormitoryStaff dormitoryStaff) {
+        this.dormitoryStaff = dormitoryStaff;
     }
 
     public Integer getVisitorId() {

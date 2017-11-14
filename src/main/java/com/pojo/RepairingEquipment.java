@@ -7,39 +7,30 @@ import java.util.Date;
  */
 public class RepairingEquipment {
     private Integer id;
-    private Integer roomId;
+    private Room room;
     private String  description;
     private Date date;
     private boolean repaired;
-    private Integer dormitoryStaffId;
+    private DormitoryStaff dormitoryStaff;
 
     public RepairingEquipment() {
 
     }
 
-
     public Integer getId() {
         return id;
-    }
-
-    public Integer getDormitoryStaffId() {
-        return dormitoryStaffId;
-    }
-
-    public void setDormitoryStaffId(Integer dormitoryStaffId) {
-        this.dormitoryStaffId = dormitoryStaffId;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public Integer getRoomId() {
-        return roomId;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public String getDescription() {
@@ -64,5 +55,13 @@ public class RepairingEquipment {
 
     public void setRepaired(boolean repaired) {
         this.repaired = repaired;
+    }
+
+    public DormitoryStaff getDormitoryStaff() {
+        return dormitoryStaff;
+    }
+
+    public void setDormitoryStaff(DormitoryStaff dormitoryStaff) {
+        this.dormitoryStaff = dormitoryStaff;
     }
 }

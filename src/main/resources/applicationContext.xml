@@ -63,7 +63,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
                 <value>hbm/RepairingEquipment.hbm.xml</value>
                 <value>hbm/Room.hbm.xml</value>
                 <value>hbm/SanitaryStatus.hbm.xml</value>
-                <value>hbm/SpeicalAction.hbm.xml</value>
+                <value>hbm/SpecialAction.hbm.xml</value>
                 <value>hbm/Student.hbm.xml</value>
                 <value>hbm/SystemAdministrator.hbm.xml</value>
                 <value>hbm/VisitorRecord.hbm.xml</value>
@@ -77,9 +77,9 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
 
     </bean>
     <!--Action交给Spring来管理-->
-    <!--<bean id="postAction" class="com.action.PostAction" scope="prototype">-->
-        <!--<property name="postService" ref="postService"/>-->
-    <!--</bean>-->
+    <bean id="StudentManagementAction" class="com.action.StudentManagementAction" scope="prototype">
+        <property name="studentManagementService" ref="studentManagementService"/>
+    </bean>
     <!--<bean id="accountAction" class="com.action.AccountAction" scope="prototype">-->
         <!--<property name="accountService" ref="accountService"/>-->
         <!--<property name="postService" ref="postService"/>-->
@@ -94,11 +94,11 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
     <!--<bean id="adminAction" class="com.action.AdminAction" scope="prototype">-->
         <!--<property name="adminService" ref="adminService"/>-->
     <!--</bean>-->
-    <!--&lt;!&ndash;配置Service层的类&ndash;&gt;-->
 
-    <!--<bean id="postService" class="com.service.Impl.PostServiceImpl">-->
-    <!--<property name="postDao" ref="postDao"/>-->
-    <!--</bean>-->
+    <!--配置Service层的类-->
+    <bean id="studentManagementService" class="com.service.Impl.StudentManagementServiceImpl">
+    <property name="studentManagementDao" ref="studentManagementDao"/>
+    </bean>
     <!--<bean id="accountService" class="com.service.Impl.AccountServiceImpl">-->
         <!--<property name="accountDao" ref="accountDao"/>-->
     <!--</bean>-->
@@ -113,11 +113,11 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
     <!--</bean>-->
     <!--<bean id="fileDownloadService" class="com.service.Impl.FileDownloadServiceImpl">-->
     <!--</bean>-->
-    <!--&lt;!&ndash;配置Dao层的类&ndash;&gt;-->
 
-    <!--<bean id="postDao" class="com.dao.Impl.PostDaoImpl">-->
-        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
-    <!--</bean>-->
+    <!--配置Dao层的类-->
+    <bean id="studentManagementDao" class="com.dao.Impl.StudentManagementDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
     <!--<bean id="accountDao" class="com.dao.Impl.AccountDaoImpl">-->
         <!--<property name="sessionFactory" ref="sessionFactory"/>-->
     <!--</bean>-->

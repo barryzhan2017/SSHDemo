@@ -9,6 +9,6 @@
         </id>
         <property name="score" column="score" type="java.lang.Integer"/>
         <property name="date" column="date" type="java.util.Date"/>
-        <many-to-one name="roomId" column="room_id" class="com.pojo.Room" lazy="false"/>
+        <many-to-one name="room" column="room_id" class="com.pojo.Room" lazy="false"/>
     </class>
 </hibernate-mapping>

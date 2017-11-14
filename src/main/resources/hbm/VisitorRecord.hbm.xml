@@ -12,6 +12,6 @@
         <property name="reason" column="reason" type="java.lang.String"/>
         <property name="leaveStatus" column="leave_status" type="java.lang.Boolean"/>
         <property name="date" column="date" type="java.util.Date"/>
-        <many-to-one name="dormitoryStaffId" column="dormitory_staff_id" class="com.pojo.DormitoryStaff" lazy="false"/>
+        <many-to-one name="dormitoryStaff" column="dormitory_staff_id" class="com.pojo.DormitoryStaff" lazy="false"/>
     </class>
 </hibernate-mapping>

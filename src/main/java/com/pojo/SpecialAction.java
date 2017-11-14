@@ -7,9 +7,8 @@ import java.util.Date;
  */
 public class SpecialAction {
     private Integer id;
-    private Integer roomId;
-    private Integer studentId;
-    private String studentName;
+    private Room room;
+    private Student student;
     private String  actionType;
     private Date date;
     private Integer dormitoryStaffId;
@@ -26,28 +25,21 @@ public class SpecialAction {
         this.dormitoryStaffId = dormitoryStaffId;
     }
 
-    public Integer getRoomId() {
-        return roomId;
+
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
-    public Integer getStudentId() {
-        return studentId;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
-
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public String getActionType() {

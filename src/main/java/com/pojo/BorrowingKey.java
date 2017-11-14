@@ -7,11 +7,10 @@ import java.util.Date;
  */
 public class BorrowingKey {
     private Integer id;
-    private Integer studentId;
-    private String  studentName;
-    private Integer roomId;
+    private Student student;
+    private Room room;
     private Date date;
-    private Integer dormitoryStaffId;
+    private DormitoryStaff dormitoryStaff;
     private Boolean returned;
 
     public BorrowingKey() {
@@ -26,28 +25,20 @@ public class BorrowingKey {
         this.id = id;
     }
 
-    public Integer getStudentId() {
-        return studentId;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
-
-    public Integer getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public Date getDate() {
@@ -58,12 +49,12 @@ public class BorrowingKey {
         this.date = date;
     }
 
-    public Integer getDormitoryStaffId() {
-        return dormitoryStaffId;
+    public DormitoryStaff getDormitoryStaff() {
+        return dormitoryStaff;
     }
 
-    public void setDormitoryStaffId(Integer dormitoryStaffId) {
-        this.dormitoryStaffId = dormitoryStaffId;
+    public void setDormitoryStaff(DormitoryStaff dormitoryStaff) {
+        this.dormitoryStaff = dormitoryStaff;
     }
 
     public Boolean getReturned() {

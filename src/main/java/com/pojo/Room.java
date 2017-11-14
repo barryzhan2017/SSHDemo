@@ -13,44 +13,11 @@ public class Room {
     private List<Student> students;
     private List<SanitaryStatus> sanitaryStatuses;
     private List<RepairingEquipment> repairingEquipments;
-    private Integer instructorId;
-    private Integer buildingId;
+    private Instructor instructor;
+    private DormitoryBuilding dormitoryBuilding;
 
     public Room() {
 
-    }
-
-    public Integer getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
-    }
-
-
-    public Integer getBuildingId() {
-        return buildingId;
-    }
-
-    public void setBuildingId(Integer buildingId) {
-        this.buildingId = buildingId;
-    }
-
-    public List<RepairingEquipment> getRepairingEquipments() {
-        return repairingEquipments;
-    }
-
-    public void setRepairingEquipments(List<RepairingEquipment> repairingEquipments) {
-        this.repairingEquipments = repairingEquipments;
-    }
-
-    public Integer getInstructorId() {
-        return instructorId;
-    }
-
-    public void setInstructorId(Integer instructorId) {
-        this.instructorId = instructorId;
     }
 
     public Integer getId() {
@@ -59,6 +26,14 @@ public class Room {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
     }
 
     public Integer getSize() {
@@ -91,5 +66,29 @@ public class Room {
 
     public void setSanitaryStatuses(List<SanitaryStatus> sanitaryStatuses) {
         this.sanitaryStatuses = sanitaryStatuses;
+    }
+
+    public List<RepairingEquipment> getRepairingEquipments() {
+        return repairingEquipments;
+    }
+
+    public void setRepairingEquipments(List<RepairingEquipment> repairingEquipments) {
+        this.repairingEquipments = repairingEquipments;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
+    public DormitoryBuilding getDormitoryBuilding() {
+        return dormitoryBuilding;
+    }
+
+    public void setDormitoryBuilding(DormitoryBuilding dormitoryBuilding) {
+        this.dormitoryBuilding = dormitoryBuilding;
     }
 }
