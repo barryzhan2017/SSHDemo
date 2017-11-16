@@ -8,7 +8,7 @@
         </id>
         <property name="name" column="name" type="java.lang.String"/>
         <property name="major" column="major" type="java.lang.String"/>
-        <property name="photo" column="photo" type="byte[]"/>
+        <property name="photoURL" column="photo_url" type="java.lang.String"/>
         <property name="grade" column="grade" type="java.lang.Integer"/>
         <property name="phoneNumber" column="phone_number" type="java.lang.Integer"/>
         <property name="college" column="college" type="java.lang.String"/>

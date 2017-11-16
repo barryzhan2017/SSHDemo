@@ -80,10 +80,9 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
     <bean id="StudentManagementAction" class="com.action.StudentManagementAction" scope="prototype">
         <property name="studentManagementService" ref="studentManagementService"/>
     </bean>
-    <!--<bean id="accountAction" class="com.action.AccountAction" scope="prototype">-->
-        <!--<property name="accountService" ref="accountService"/>-->
-        <!--<property name="postService" ref="postService"/>-->
-    <!--</bean>-->
+    <bean id="SanitaryStatusAction" class="com.action.SanitaryStatusAction" scope="prototype">
+        <property name="sanitaryStatusService" ref="sanitaryStatusService"/>
+    </bean>
     <!--<bean id="fileDownloadAction" class="com.action.FileDownloadAction" scope="prototype">-->
         <!--<property name="fileDownloadService" ref="fileDownloadService"/>-->
     <!--</bean>-->
@@ -96,8 +95,11 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
     <!--</bean>-->
 
     <!--配置Service层的类-->
+    <bean id="sanitaryStatusService" class="com.service.Impl.SanitaryStatusServiceImpl">
+    <property name="sanitaryStatusDao" ref="sanitaryStatusDao"/>
+    </bean>
     <bean id="studentManagementService" class="com.service.Impl.StudentManagementServiceImpl">
-    <property name="studentManagementDao" ref="studentManagementDao"/>
+        <property name="studentManagementDao" ref="studentManagementDao"/>
     </bean>
     <!--<bean id="accountService" class="com.service.Impl.AccountServiceImpl">-->
         <!--<property name="accountDao" ref="accountDao"/>-->
@@ -116,6 +118,9 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
 
     <!--配置Dao层的类-->
     <bean id="studentManagementDao" class="com.dao.Impl.StudentManagementDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="sanitaryStatusDao" class="com.dao.Impl.SanitaryStatusDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <!--<bean id="accountDao" class="com.dao.Impl.AccountDaoImpl">-->

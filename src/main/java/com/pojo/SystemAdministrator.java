@@ -10,9 +10,7 @@ public class SystemAdministrator extends User {
     private List<Instructor> instructors;
     private List<DormitoryStaff> dormitoryStaffs;
 
-    public SystemAdministrator(List<Instructor> instructors, List<DormitoryStaff> dormitoryStaffs) {
-        this.instructors = instructors;
-        this.dormitoryStaffs = dormitoryStaffs;
+    public SystemAdministrator() {
     }
 
     public List<Instructor> getInstructors() {

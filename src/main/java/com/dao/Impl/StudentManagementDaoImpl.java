@@ -16,25 +16,25 @@ import java.util.SimpleTimeZone;
 public class StudentManagementDaoImpl extends  HibernateDaoSupport implements StudentManagementDao {
 
 
-    @Override
-    public Boolean searchStudentByRoom(Integer studentId, Integer roomId) {
-            String hql1 = "from Student s  where  s.id=?";
-            if (((List<Student>)getHibernateTemplate().find(hql1,studentId)).isEmpty()) {
-                return false;
-            }
-            Student student = ((List<Student>)getHibernateTemplate().find(hql1,studentId)).get(0);
-            //find if the student's room number is the same as the given roomId
-            if (student.getRoom().getRoomId()!=roomId) {
-                return  false;
-            }
-            return true;
-
-    }
+//    @Override
+//    public Boolean searchStudentByRoom(Integer studentId, String roomId) {
+//            String hql1 = "from Student student  where  student.id=?";
+//            if (((List<Student>)getHibernateTemplate().find(hql1,studentId)).isEmpty()) {
+//                return false;
+//            }
+//            Student student = ((List<Student>)getHibernateTemplate().find(hql1,studentId)).get(0);
+//            //find if the student's room number is the same as the given roomId
+//            if (!student.getRoom().getRoomId().equals(roomId)) {
+//                return  false;
+//            }
+//            return true;
+//
+//    }
 
     @Override
     public Student searchStudentById(Integer studentId) {
-        String hql1 = "from Student s  where  s.id=?";
-        List<Student> students = (List<Student>)getHibernateTemplate().find(hql1,studentId);
+        String hql = "from Student student  where  student.id=?";
+        List<Student> students = (List<Student>)getHibernateTemplate().find(hql,studentId);
         if (students.isEmpty()){
             return null;
         }
@@ -44,6 +44,31 @@ public class StudentManagementDaoImpl extends  HibernateDaoSupport implements St
     @Override
     public void updateStudent(Student student) {
         getHibernateTemplate().update(student);
+    }
+
+    @Override
+    public List<Student> getAllStudents() {
+        return null;
+    }
+
+    @Override
+    public List<Student> getAllStudentsByInstructorId(Integer id) {
+        String hql = "from  Student student where  student.instructor.id=?";
+        List<Student> students = (List<Student>)getHibernateTemplate().find(hql,id);
+        if (students.isEmpty()){
+            return null;
+        }
+        return students;
+    }
+
+    @Override
+    public List<Student> getAllStudentsByDormitoryStaffId(Integer id) {
+        String hql = "from  Student student where  student.dormitoryStaff.id=?";
+        List<Student> students = (List<Student>)getHibernateTemplate().find(hql,id);
+        if (students.isEmpty()){
+            return null;
+        }
+        return students;
     }
 
 

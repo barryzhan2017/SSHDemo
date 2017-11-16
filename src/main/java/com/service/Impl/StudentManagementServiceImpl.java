@@ -6,6 +6,8 @@ import com.pojo.Room;
 import com.pojo.Student;
 import com.service.StudentManagementService;
 
+import java.util.List;
+
 /**
  * Created by zhanzhicheng on 11/12/2017.
  */
@@ -39,5 +41,20 @@ public class StudentManagementServiceImpl implements StudentManagementService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Student> getAllStudents() {
+        return studentManagementDao.getAllStudents();
+    }
+
+    @Override
+    public List<Student> getAllStudentsByInstructorId(Integer id) {
+        return studentManagementDao.getAllStudentsByInstructorId(id);
+    }
+
+    @Override
+    public List<Student> getAllStudentsByDormitoryStaffId(Integer id) {
+        return studentManagementDao.getAllStudentsByDormitoryStaffId(id);
     }
 }

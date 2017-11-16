@@ -3,7 +3,7 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.pojo.SanitaryStatus" table="borrowing_key" lazy="false" dynamic-update="true">
+    <class name="com.pojo.SanitaryStatus" table="sanitary_status" lazy="false" dynamic-update="true">
         <id name="id" column="id" type="java.lang.Integer">
             <generator class="identity"/>
         </id>
