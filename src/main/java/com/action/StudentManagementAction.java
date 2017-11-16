@@ -67,7 +67,7 @@ public class StudentManagementAction {
         return "success";
     }
 
-    //display all student info for specific instructor or dormitory staff
+    //display all students info for specific instructor or dormitory staff
     @Action(value = "display", results = { @Result(type = "json", params = { "root", "dataMap" }) })
     public String display() throws Exception {
         this.dataMap = new HashMap<String, Object>();
