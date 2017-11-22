@@ -8,7 +8,7 @@
             <generator class="identity"></generator>
         </id>
 
-        <property name="roomId" column="room_id" type="java.lang.Integer"/>
+        <property name="roomId" column="room_id" type="java.lang.String"/>
         <property name="size" column="size" type="java.lang.Integer"/>
         <property name="gender" column="gender" type="java.lang.String"/>
 

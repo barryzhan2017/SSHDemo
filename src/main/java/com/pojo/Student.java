@@ -9,7 +9,7 @@ public class Student {
     private Integer id;
     private String name;
     private String major;
-    private Byte[] photo;
+    private String photoURL;
     private Integer grade;
     private Integer phoneNumber;
     private String college;
@@ -51,12 +51,12 @@ public class Student {
         this.major = major;
     }
 
-    public Byte[] getPhoto() {
-        return photo;
+    public String getPhotoURL() {
+        return photoURL;
     }
 
-    public void setPhoto(Byte[] photo) {
-        this.photo = photo;
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 
     public Integer getGrade() {
