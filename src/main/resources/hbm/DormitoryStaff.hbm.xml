@@ -11,29 +11,29 @@
         <property name="account" column="account" type="java.lang.String"/>
         <property name="password" column="password" type="java.lang.String"/>
         <many-to-one name="systemAdministrator" column="system_administrator_id" class="com.pojo.SystemAdministrator" lazy="false"/>
-        <list name="students" cascade="all" lazy="false">
+        <list name="students" cascade="all" >
             <key column="dormitory_staff_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.Student"/>
         </list>
-        <list name="specialActions" cascade="all" lazy="false">
+        <list name="specialActions" cascade="all">
             <key column="dormitory_staff_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.SpecialAction"/>
         </list>
 
-        <list name="repairingEquipments" cascade="all" lazy="false">
+        <list name="repairingEquipments" cascade="all">
             <key column="dormitory_staff_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.RepairingEquipment"/>
         </list>
-        <list name="borrowingKeys" cascade="all" lazy="false">
+        <list name="borrowingKeys" cascade="all">
             <key column="dormitory_staff_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.BorrowingKey"/>
         </list>
 
-        <list name="visitorRecords" cascade="all" lazy="false">
+        <list name="visitorRecords" cascade="all" lazy="false" inverse="false">
             <key column="dormitory_staff_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.VisitorRecord"/>

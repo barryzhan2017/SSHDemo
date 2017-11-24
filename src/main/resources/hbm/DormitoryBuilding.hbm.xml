@@ -8,7 +8,7 @@
         </id>
         <property name="floor" column="floor" type="java.lang.Integer"/>
 
-        <list name="rooms" cascade="all" lazy="false">
+        <list name="rooms" cascade="all">
             <key column="building_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.Room"/>

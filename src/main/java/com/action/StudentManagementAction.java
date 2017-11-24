@@ -8,7 +8,6 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
-import org.hibernate.Session;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,44 +39,89 @@ public class StudentManagementAction {
         this.studentManagementService = studentManagementService;
     }
 
-    //Change dormitory is designed to change two given students to the other's dormitory
-    @Action(value = "changeDormitory", results = { @Result(type = "json", params = { "root", "dataMap" }) })
-    public String changeDormitory() throws Exception {
-        this.dataMap = new HashMap<String, Object>();
-        Integer studentId1 = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId1"));
-        Integer studentId2 = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId2"));
-        Boolean result = studentManagementService.changeDormitory(studentId1,studentId2);
-        if (result) {
-            dataMap.put("result", "success");
-        }
-        else {
-            dataMap.put("result","fail");//if some student doesn't  exists
-        }
-        return "success";
-    }
+//    //Change dormitory is designed to change two given students to the other's dormitory
+//    @Action(value = "changeDormitory", results = { @Result(type = "json", params = { "root", "dataMap" }) })
+//    public String changeDormitory() throws Exception {
+//        this.dataMap = new HashMap<String, Object>();
+//        Integer studentId1 = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId1"));
+//        Integer studentId2 = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId2"));
+//        Boolean result = studentManagementService.changeDormitory(studentId1,studentId2);
+//        if (result) {
+//            dataMap.put("result", "success");
+//        }
+//        else {
+//            dataMap.put("result","fail");//if some student doesn't  exists
+//        }
+//        return "success";
+//    }
 
-    @Action(value = "addStudentToDormitory", results = { @Result(type = "json", params = { "root", "dataMap" }) })
+    @Action(value = "add", results = { @Result(type = "json", params = { "root", "dataMap" }) })
     public String addStudentToDormitory() throws Exception {
         this.dataMap = new HashMap<String, Object>();
         Integer studentId = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId"));
-        Integer buildingId = Integer.valueOf(ServletActionContext.getRequest().getParameter("buildingId"));
         Integer roomId = Integer.valueOf(ServletActionContext.getRequest().getParameter("roomId"));
         Integer bedId = Integer.valueOf(ServletActionContext.getRequest().getParameter("bedId"));
-//        studentManagementService.addStudentToDormitory(studentId,buildingId,roomId,bedId);
+        Map session = ActionContext.getContext().getSession();
+//        Integer id = (Integer) session.get("token");
+        Integer id = 1;
+        if (authorize()&&studentManagementService.addStudentToDormitory(studentId, roomId, bedId,id)) {
+            dataMap.put("status","success");
+            dataMap.put("code","200");
+        }
+        else {
+            dataMap.put("status","fail");
+            dataMap.put("code","203");
+        }
         return "success";
     }
 
+    @Action(value = "remove", results = { @Result(type = "json", params = { "root", "dataMap" }) })
+    public String removeStudentFromDormitory() throws Exception {
+        this.dataMap = new HashMap<String, Object>();
+        Integer studentId = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId"));
+        Integer roomId = Integer.valueOf(ServletActionContext.getRequest().getParameter("roomId"));
+        Map session = ActionContext.getContext().getSession();
+//        Integer id = (Integer) session.get("token");
+        Integer id = 1;
+        if (authorize()&&studentManagementService.removeStudentFromDormitory(studentId, roomId,id)) {
+            dataMap.put("status","success");
+            dataMap.put("code","200");
+        }
+        else {
+            dataMap.put("status","fail");
+            dataMap.put("code","203");
+        }
+        return "success";
+    }
+
+    @Action(value = "leader", results = { @Result(type = "json", params = { "root", "dataMap" }) })
+    public String appointRoomLeader() throws Exception {
+        this.dataMap = new HashMap<String, Object>();
+        Integer studentId = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId"));
+        Integer roomId = Integer.valueOf(ServletActionContext.getRequest().getParameter("roomId"));
+//        Integer id = (Integer) session.get("token");
+        Integer id = 1;
+        if (authorize()&&studentManagementService.appointRoomLeader(studentId, roomId,id)) {
+            dataMap.put("status","success");
+            dataMap.put("code","200");
+        }
+        else {
+            dataMap.put("status","fail");
+            dataMap.put("code","203");
+        }
+        return "success";
+    }
     //display all students info for specific instructor or dormitory staff
     @Action(value = "display", results = { @Result(type = "json", params = { "root", "dataMap" }) })
     public String display() throws Exception {
         this.dataMap = new HashMap<String, Object>();
         List<Student> students;
-        Map session = ActionContext.getContext().getSession();
+//        Map session = ActionContext.getContext().getSession();
 //        Integer id = (Integer) session.get("token");
 //        String type = (String )session.get("type");
         Integer id = 1;
         String type = "instructor";
-        if (id!=null&type!=null) {
+        if (authorize()) {
             dataMap.put("code","200");
             if (type.equals("instructor")) {
                 students = studentManagementService.getAllStudentsByInstructorId(id);
@@ -110,6 +154,17 @@ public class StudentManagementAction {
             dataMap.put("code","203");//no-authorized
         }
         return "success";
+    }
+
+
+
+    private boolean authorize() {
+        Map session = ActionContext.getContext().getSession();
+//        Integer id = (Integer) session.get("token");
+//        String type = (String )session.get("type");
+        Integer id = 1;
+        String type = "instructor";
+        return id!=null&type!=null;
     }
 
 }

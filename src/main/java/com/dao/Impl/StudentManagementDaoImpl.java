@@ -1,12 +1,11 @@
 package com.dao.Impl;
 
 import com.dao.StudentManagementDao;
-import com.pojo.Room;
 import com.pojo.Student;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
-import java.util.SimpleTimeZone;
 
 /**
  * Created by zhanzhicheng on 11/12/2017.
@@ -69,6 +68,18 @@ public class StudentManagementDaoImpl extends  HibernateDaoSupport implements St
             return null;
         }
         return students;
+    }
+
+    //judge if there is already a student in this bed
+    @Override
+    public boolean isStudentOccupied(Integer roomId, Integer bedId) {
+        String hql = "from  Student student where  student.room.id=? and student.bedId=?";
+        List<Student> studentList = (List<Student>)getHibernateTemplate().find(hql,new Object[]{roomId,bedId});
+        System.out.print("room"+roomId+"bed:"+bedId);
+        if (studentList.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
 

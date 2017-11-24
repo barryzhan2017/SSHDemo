@@ -1,7 +1,5 @@
 package com.pojo;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
 /**
  * Created by zhanzhicheng on 11/6/2017.
  */
@@ -18,7 +16,6 @@ public class Student {
     private Integer bedId;
     private Integer classNum;
     private Boolean RoomLeader;
-    private Boolean legalElectricalAppliance;
     private Boolean onCampus;
     private DormitoryStaff dormitoryStaff;
     private Instructor instructor;
@@ -121,14 +118,6 @@ public class Student {
 
     public void setRoomLeader(Boolean roomLeader) {
         RoomLeader = roomLeader;
-    }
-
-    public Boolean getLegalElectricalAppliance() {
-        return legalElectricalAppliance;
-    }
-
-    public void setLegalElectricalAppliance(Boolean legalElectricalAppliance) {
-        this.legalElectricalAppliance = legalElectricalAppliance;
     }
 
     public Boolean getOnCampus() {

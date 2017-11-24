@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface SanitaryStatusDao {
     List<SanitaryStatus> getAllSanitaryStatus(Integer id);
+    boolean addSanitaryStatus(SanitaryStatus sanitaryStatus);
 }
