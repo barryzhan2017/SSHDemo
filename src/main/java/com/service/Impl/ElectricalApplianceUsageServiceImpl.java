@@ -34,4 +34,9 @@ public class ElectricalApplianceUsageServiceImpl implements ElectricalApplianceU
     public List<ElectricalApplianceUsage> getAllElectricalApplianceUsage(Integer id) {
         return electricalApplianceUsageDao.getAllElectricalApplianceUsage(id);
     }
+
+    @Override
+    public boolean update(String newSituation, Integer studentId) {
+        return electricalApplianceUsageDao.update(newSituation,studentId);
+    }
 }

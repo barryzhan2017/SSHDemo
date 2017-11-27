@@ -87,6 +87,9 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
     <bean id="ElectricalApplianceUsageAction" class="com.action.ElectricalApplianceUsageAction" scope="prototype">
         <property name="electricalApplianceUsageService" ref="electricalApplianceUsageService"/>
     </bean>
+    <bean id="UserAction" class="com.action.UserAction" scope="prototype">
+        <property name="userService" ref="userService"/>
+    </bean>
     <!--<bean id="fileDownloadAction" class="com.action.FileDownloadAction" scope="prototype">-->
         <!--<property name="fileDownloadService" ref="fileDownloadService"/>-->
     <!--</bean>-->
@@ -112,6 +115,10 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
     <bean id="electricalApplianceUsageService" class="com.service.Impl.ElectricalApplianceUsageServiceImpl">
         <property name="electricalApplianceUsageDao" ref="electricalApplianceUsageDao"/>
         <property name="roomDao" ref="roomDao"/>
+    </bean>
+
+    <bean id="userService" class="com.service.Impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
     </bean>
     <!--<bean id="accountService" class="com.service.Impl.AccountServiceImpl">-->
         <!--<property name="accountDao" ref="accountDao"/>-->
@@ -140,6 +147,9 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
     </bean>
     <bean id="electricalApplianceUsageDao" class="com.dao.Impl.ElectricalApplianceUsageDaoImpl">
     <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="userDao" class="com.dao.Impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <!--<bean id="accountDao" class="com.dao.Impl.AccountDaoImpl">-->

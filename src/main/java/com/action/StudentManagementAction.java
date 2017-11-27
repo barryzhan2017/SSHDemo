@@ -62,9 +62,9 @@ public class StudentManagementAction {
         Integer roomId = Integer.valueOf(ServletActionContext.getRequest().getParameter("roomId"));
         Integer bedId = Integer.valueOf(ServletActionContext.getRequest().getParameter("bedId"));
         Map session = ActionContext.getContext().getSession();
-//        Integer id = (Integer) session.get("token");
-        Integer id = 1;
-        if (authorize()&&studentManagementService.addStudentToDormitory(studentId, roomId, bedId,id)) {
+        Integer id = (Integer) session.get("id");
+        String type = (String )session.get("type");
+        if (id!=null&type!=null&&studentManagementService.addStudentToDormitory(studentId, roomId, bedId,id)) {
             dataMap.put("status","success");
             dataMap.put("code","200");
         }
@@ -81,9 +81,9 @@ public class StudentManagementAction {
         Integer studentId = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId"));
         Integer roomId = Integer.valueOf(ServletActionContext.getRequest().getParameter("roomId"));
         Map session = ActionContext.getContext().getSession();
-//        Integer id = (Integer) session.get("token");
-        Integer id = 1;
-        if (authorize()&&studentManagementService.removeStudentFromDormitory(studentId, roomId,id)) {
+        Integer id = (Integer) session.get("id");
+        String type = (String )session.get("type");
+        if (id!=null&type!=null&&studentManagementService.removeStudentFromDormitory(studentId, roomId,id)) {
             dataMap.put("status","success");
             dataMap.put("code","200");
         }
@@ -99,9 +99,10 @@ public class StudentManagementAction {
         this.dataMap = new HashMap<String, Object>();
         Integer studentId = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId"));
         Integer roomId = Integer.valueOf(ServletActionContext.getRequest().getParameter("roomId"));
-//        Integer id = (Integer) session.get("token");
-        Integer id = 1;
-        if (authorize()&&studentManagementService.appointRoomLeader(studentId, roomId,id)) {
+        Map session = ActionContext.getContext().getSession();
+        Integer id = (Integer) session.get("id");
+        String type = (String )session.get("type");
+        if (id!=null&&type!=null&&studentManagementService.appointRoomLeader(studentId, roomId,id)) {
             dataMap.put("status","success");
             dataMap.put("code","200");
         }
@@ -119,9 +120,10 @@ public class StudentManagementAction {
 //        Map session = ActionContext.getContext().getSession();
 //        Integer id = (Integer) session.get("token");
 //        String type = (String )session.get("type");
-        Integer id = 1;
-        String type = "instructor";
-        if (authorize()) {
+        Map session = ActionContext.getContext().getSession();
+        Integer id = (Integer) session.get("id");
+        String type = (String )session.get("type");
+        if (id!=null&type!=null) {
             dataMap.put("code","200");
             if (type.equals("instructor")) {
                 students = studentManagementService.getAllStudentsByInstructorId(id);
@@ -154,17 +156,6 @@ public class StudentManagementAction {
             dataMap.put("code","203");//no-authorized
         }
         return "success";
-    }
-
-
-
-    private boolean authorize() {
-        Map session = ActionContext.getContext().getSession();
-//        Integer id = (Integer) session.get("token");
-//        String type = (String )session.get("type");
-        Integer id = 1;
-        String type = "instructor";
-        return id!=null&type!=null;
     }
 
 }

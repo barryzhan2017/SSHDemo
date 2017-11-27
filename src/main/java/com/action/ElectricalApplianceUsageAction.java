@@ -4,15 +4,13 @@ import com.opensymphony.xwork2.ActionContext;
 import com.pojo.ElectricalApplianceUsage;
 import com.pojo.Student;
 import com.service.ElectricalApplianceUsageService;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by zhanzhicheng on 11/24/2017.
@@ -43,8 +41,10 @@ public class ElectricalApplianceUsageAction {
     @Action(value = "display", results = { @Result(type = "json", params = { "root", "dataMap" }) })
     public String display() throws Exception {
         this.dataMap = new HashMap<String, Object>();
-        List<Student> students;
-        if (authorize()) {
+        Map session = ActionContext.getContext().getSession();
+        Integer id = (Integer) session.get("id");
+        String type = (String )session.get("type");
+        if (type!=null&&id!=null) {
             dataMap.put("code","200");
             //(Integer)(ActionContext.getContext().getSession().get("token"))
             List<ElectricalApplianceUsage> electricalApplianceUsages = electricalApplianceUsageService.getAllElectricalApplianceUsage(1);
@@ -67,15 +67,23 @@ public class ElectricalApplianceUsageAction {
         }
         return "success";
     }
-
-
-    private boolean authorize() {
+    @Action(value = "update", results = { @Result(type = "json", params = { "root", "dataMap" }) })
+    public String appointRoomLeader() throws Exception {
+        this.dataMap = new HashMap<String, Object>();
+        Integer studenId = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId"));
+        String newSituation = ServletActionContext.getRequest().getParameter("newSituation");
         Map session = ActionContext.getContext().getSession();
-//        Integer id = (Integer) session.get("token");
-//        String type = (String )session.get("type");
-        Integer id = 1;
-        String type = "instructor";
-        return type.equals("instructor")&&id!=null;
+        Integer id = (Integer) session.get("id");
+        String type = (String )session.get("type");
+        if (id!=null&&type!=null&&electricalApplianceUsageService.update(newSituation, studenId)) {
+            dataMap.put("status","success");
+            dataMap.put("code","200");
+        }
+        else {
+            dataMap.put("status","fail");
+            dataMap.put("code","203");
+        }
+        return "success";
     }
 
 }

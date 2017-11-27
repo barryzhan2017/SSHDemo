@@ -22,4 +22,18 @@ public class ElectricalApplianceUsageDaoImpl extends HibernateDaoSupport impleme
         return electricalApplianceUsages;
 
     }
+
+    @Override
+    public boolean update(String newSituation, Integer studentId) {
+        String hql = "from ElectricalApplianceUsage e where e.student.id=?";
+        List<ElectricalApplianceUsage> electricalApplianceUsages = (List<ElectricalApplianceUsage>)getHibernateTemplate().find(hql,studentId);
+        if (electricalApplianceUsages.isEmpty())
+            return false;
+        else {
+            ElectricalApplianceUsage electricalApplianceUsage = electricalApplianceUsages.get(0);
+            electricalApplianceUsage.setSituation(newSituation);
+            getHibernateTemplate().update(electricalApplianceUsage);
+            return true;
+        }
+    }
 }

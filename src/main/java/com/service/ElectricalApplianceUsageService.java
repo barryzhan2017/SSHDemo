@@ -10,4 +10,5 @@ import java.util.List;
 public interface ElectricalApplianceUsageService {
 
     List<ElectricalApplianceUsage> getAllElectricalApplianceUsage(Integer id);
+    boolean update(String newSituation, Integer studentId);
 }

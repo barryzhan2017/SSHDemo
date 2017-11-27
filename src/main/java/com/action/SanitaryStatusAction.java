@@ -50,7 +50,10 @@ public class SanitaryStatusAction {
         Integer score = Integer.valueOf(ServletActionContext.getRequest().getParameter("score"));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date =  sdf.parse(dateString.toString());
-        if (authorize()&&sanitaryStatusService.addSanitaryStatus(1,roomId,date,score)) {
+        Map session = ActionContext.getContext().getSession();
+        Integer id = (Integer) session.get("id");
+        String type = (String )session.get("type");
+        if (id!=null&&type!=null&&sanitaryStatusService.addSanitaryStatus(1,roomId,date,score)) {
             dataMap.put("status", "success");
             dataMap.put("code", "200");
                 //(Integer)(ActionContext.getContext().getSession().get("token"))
@@ -68,8 +71,10 @@ public class SanitaryStatusAction {
     @Action(value = "display", results = { @Result(type = "json", params = { "root", "dataMap" }) })
     public String display() throws Exception {
         this.dataMap = new HashMap<String, Object>();
-        List<Student> students;
-        if (authorize()) {
+        Map session = ActionContext.getContext().getSession();
+        Integer id = (Integer) session.get("id");
+        String type = (String )session.get("type");
+        if (id!=null&&type!=null) {
             dataMap.put("code","200");
             //(Integer)(ActionContext.getContext().getSession().get("token"))
             List<SanitaryStatus> sanitaryStatuses =
@@ -104,14 +109,4 @@ public class SanitaryStatusAction {
         }
         return "success";
     }
-
-    private boolean authorize() {
-        Map session = ActionContext.getContext().getSession();
-//        Integer id = (Integer) session.get("token");
-//        String type = (String )session.get("type");
-        Integer id = 1;
-        String type = "instructor";
-        return type.equals("instructor")&&id!=null;
-    }
-
 }

@@ -12,4 +12,5 @@ import java.util.List;
 public interface ElectricalApplianceUsageDao {
 
     List<ElectricalApplianceUsage> getAllElectricalApplianceUsage(Integer id);
+    boolean update(String newSituation, Integer studentId);
 }
