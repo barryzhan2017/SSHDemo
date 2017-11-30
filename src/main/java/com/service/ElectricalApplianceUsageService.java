@@ -2,6 +2,7 @@ package com.service;
 
 import com.pojo.ElectricalApplianceUsage;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,5 +11,6 @@ import java.util.List;
 public interface ElectricalApplianceUsageService {
 
     List<ElectricalApplianceUsage> getAllElectricalApplianceUsage(Integer id);
-    boolean update(String newSituation, Integer studentId);
+    boolean update(String newSituation, Integer id);
+    boolean add(Integer studentId, Date date, Integer id, String newSituation);
 }

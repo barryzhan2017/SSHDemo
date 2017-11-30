@@ -3,6 +3,7 @@ package com.dao;
 import com.pojo.ElectricalApplianceUsage;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,4 +14,5 @@ public interface ElectricalApplianceUsageDao {
 
     List<ElectricalApplianceUsage> getAllElectricalApplianceUsage(Integer id);
     boolean update(String newSituation, Integer studentId);
+    boolean add(ElectricalApplianceUsage electricalApplianceUsage);
 }

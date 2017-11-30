@@ -10,6 +10,7 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -51,11 +52,14 @@ public class ElectricalApplianceUsageAction {
             ArrayList<Map<String,Object>> electricalApplianceUsagesList = new ArrayList<Map<String, Object>>();
             for (ElectricalApplianceUsage electricalApplianceUsage:electricalApplianceUsages) {
                 Map<String,Object> electricalApplianceUsageMap = new HashMap<String, Object>();
+                electricalApplianceUsageMap.put("id",electricalApplianceUsage.getId());
                 electricalApplianceUsageMap.put("roomId",electricalApplianceUsage.getRoom().getId());
                 electricalApplianceUsageMap.put("roomName",electricalApplianceUsage.getRoom().getRoomName());
                 electricalApplianceUsageMap.put("situation",electricalApplianceUsage.getSituation());
                 electricalApplianceUsageMap.put("studentId",electricalApplianceUsage.getStudent().getId());
                 electricalApplianceUsageMap.put("studentName",electricalApplianceUsage.getStudent().getName());
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+                electricalApplianceUsageMap.put("date",sdf.format(electricalApplianceUsage.getDate()));
                 electricalApplianceUsagesList.add(electricalApplianceUsageMap);
 
             }
@@ -68,14 +72,15 @@ public class ElectricalApplianceUsageAction {
         return "success";
     }
     @Action(value = "update", results = { @Result(type = "json", params = { "root", "dataMap" }) })
-    public String appointRoomLeader() throws Exception {
+    public String update() throws Exception {
         this.dataMap = new HashMap<String, Object>();
-        Integer studenId = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId"));
+
+        Integer ElectricalApplianceUsageId = Integer.valueOf(ServletActionContext.getRequest().getParameter("id"));
         String newSituation = ServletActionContext.getRequest().getParameter("newSituation");
         Map session = ActionContext.getContext().getSession();
         Integer id = (Integer) session.get("id");
         String type = (String )session.get("type");
-        if (id!=null&&type!=null&&electricalApplianceUsageService.update(newSituation, studenId)) {
+        if (id!=null&&type!=null&&electricalApplianceUsageService.update(newSituation, ElectricalApplianceUsageId)) {
             dataMap.put("status","success");
             dataMap.put("code","200");
         }
@@ -85,5 +90,27 @@ public class ElectricalApplianceUsageAction {
         }
         return "success";
     }
+    @Action(value = "add", results = { @Result(type = "json", params = { "root", "dataMap" }) })
+    public String add() throws Exception {
+        this.dataMap = new HashMap<String, Object>();
+        Integer studentId = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId"));
+        String newSituation = ServletActionContext.getRequest().getParameter("newSituation");
+        String dateString = ServletActionContext.getRequest().getParameter("date");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date =  sdf.parse(dateString.toString());
+        Map session = ActionContext.getContext().getSession();
+        Integer id = (Integer) session.get("id");
+        String type = (String )session.get("type");
+        if (id!=null&&type!=null&&electricalApplianceUsageService.add(studentId,date,id,newSituation)) {
+            dataMap.put("status","success");
+            dataMap.put("code","200");
+        }
+        else {
+            dataMap.put("status","fail");
+            dataMap.put("code","203");
+        }
+        return "success";
+    }
+
 
 }

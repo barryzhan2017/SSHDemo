@@ -4,6 +4,7 @@ import com.dao.ElectricalApplianceUsageDao;
 import com.pojo.ElectricalApplianceUsage;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,9 +25,9 @@ public class ElectricalApplianceUsageDaoImpl extends HibernateDaoSupport impleme
     }
 
     @Override
-    public boolean update(String newSituation, Integer studentId) {
-        String hql = "from ElectricalApplianceUsage e where e.student.id=?";
-        List<ElectricalApplianceUsage> electricalApplianceUsages = (List<ElectricalApplianceUsage>)getHibernateTemplate().find(hql,studentId);
+    public boolean update(String newSituation, Integer id) {
+        String hql = "from ElectricalApplianceUsage e where e.id=?";
+        List<ElectricalApplianceUsage> electricalApplianceUsages = (List<ElectricalApplianceUsage>)getHibernateTemplate().find(hql,id);
         if (electricalApplianceUsages.isEmpty())
             return false;
         else {
@@ -36,4 +37,12 @@ public class ElectricalApplianceUsageDaoImpl extends HibernateDaoSupport impleme
             return true;
         }
     }
+
+    @Override
+    public boolean add(ElectricalApplianceUsage electricalApplianceUsage) {
+        getHibernateTemplate().save(electricalApplianceUsage);
+        return true;
+    }
+
+
 }

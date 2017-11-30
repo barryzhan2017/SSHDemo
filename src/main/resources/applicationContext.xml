@@ -114,7 +114,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
 
     <bean id="electricalApplianceUsageService" class="com.service.Impl.ElectricalApplianceUsageServiceImpl">
         <property name="electricalApplianceUsageDao" ref="electricalApplianceUsageDao"/>
-        <property name="roomDao" ref="roomDao"/>
+        <property name="studentManagementDao" ref="studentManagementDao"/>
     </bean>
 
     <bean id="userService" class="com.service.Impl.UserServiceImpl">
