@@ -14,4 +14,5 @@ public interface StudentManagementDao {
     List<Student> getAllStudents();
     List<Student> getAllStudentsByInstructorId(Integer id);
     List<Student> getAllStudentsByDormitoryStaffId(Integer id);
+    boolean isStudentOccupied(Integer roomId, Integer bedId);
 }

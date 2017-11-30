@@ -3,19 +3,29 @@ package com.pojo;
 import java.util.Date;
 
 /**
- * Created by zhanzhicheng on 11/7/2017.
+ * Created by zhanzhicheng on 11/19/2017.
  */
-public class SanitaryStatus {
+public class ElectricalApplianceUsage {
     private Integer id;
+    private Student student;
     private Room room;
     private Date date;
-    private Integer score;
+    private String situation;
     private Instructor instructor;
 
-    public SanitaryStatus() {
+
+    public ElectricalApplianceUsage() {
+
 
     }
 
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
     public Instructor getInstructor() {
         return instructor;
@@ -33,12 +43,12 @@ public class SanitaryStatus {
         this.id = id;
     }
 
-    public Room getRoom() {
-        return room;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public Date getDate() {
@@ -49,11 +59,11 @@ public class SanitaryStatus {
         this.date = date;
     }
 
-    public Integer getScore() {
-        return score;
+    public String getSituation() {
+        return situation;
     }
 
-    public void setScore(Integer score) {
-        this.score = score;
+    public void setSituation(String situation) {
+        this.situation = situation;
     }
 }

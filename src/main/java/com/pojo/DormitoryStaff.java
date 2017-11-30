@@ -1,6 +1,5 @@
 package com.pojo;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**

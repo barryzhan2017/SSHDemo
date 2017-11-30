@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class Room {
     private Integer id;
-    private String roomId;
+    private String roomName;
     private Integer size;
     private String gender;
     private List<Student> students;
@@ -28,12 +28,12 @@ public class Room {
         this.id = id;
     }
 
-    public String getRoomId() {
-        return roomId;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setRoomId(String roomId) {
-        this.roomId = roomId;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
     public Integer getSize() {

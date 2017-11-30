@@ -16,7 +16,6 @@
         <property name="bedId" column="bed_id" type="java.lang.Integer"/>
         <property name="classNum" column="class_num" type="java.lang.Integer"/>
         <property name="roomLeader" column="room_leader" type="java.lang.Boolean"/>
-        <property name="legalElectricalAppliance" column="legal_electrical_appliance" type="java.lang.Boolean"/>
         <property name="onCampus" column="on_campus" type="java.lang.Boolean"/>
         <many-to-one name="room" column="room_id" class="com.pojo.Room" lazy="false"/>
         <many-to-one name="dormitoryStaff" column="dormitory_staff_id" class="com.pojo.DormitoryStaff" lazy="false"/>

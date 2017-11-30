@@ -1,7 +1,7 @@
 package com.service.Impl;
 
+import com.dao.RoomDao;
 import com.dao.StudentManagementDao;
-import com.pojo.DormitoryBuilding;
 import com.pojo.Room;
 import com.pojo.Student;
 import com.service.StudentManagementService;
@@ -14,6 +14,8 @@ import java.util.List;
 public class StudentManagementServiceImpl implements StudentManagementService {
 
     StudentManagementDao studentManagementDao;
+    RoomDao roomDao;
+
 
     public StudentManagementDao getStudentManagementDao() {
         return studentManagementDao;
@@ -21,6 +23,14 @@ public class StudentManagementServiceImpl implements StudentManagementService {
 
     public void setStudentManagementDao(StudentManagementDao studentManagementDao) {
         this.studentManagementDao = studentManagementDao;
+    }
+
+    public RoomDao getRoomDao() {
+        return roomDao;
+    }
+
+    public void setRoomDao(RoomDao roomDao) {
+        this.roomDao = roomDao;
     }
 
     //change two students to the other's dormitory.
@@ -44,11 +54,6 @@ public class StudentManagementServiceImpl implements StudentManagementService {
     }
 
     @Override
-    public List<Student> getAllStudents() {
-        return studentManagementDao.getAllStudents();
-    }
-
-    @Override
     public List<Student> getAllStudentsByInstructorId(Integer id) {
         return studentManagementDao.getAllStudentsByInstructorId(id);
     }
@@ -57,4 +62,43 @@ public class StudentManagementServiceImpl implements StudentManagementService {
     public List<Student> getAllStudentsByDormitoryStaffId(Integer id) {
         return studentManagementDao.getAllStudentsByDormitoryStaffId(id);
     }
+
+    @Override
+    public boolean addStudentToDormitory(Integer studentId, Integer roomId, Integer bedId, Integer instructorId) {
+        Student student = studentManagementDao.searchStudentById(studentId);
+        if (student==null||studentManagementDao.isStudentOccupied(roomId,bedId)) {
+            return false;
+        }
+        student.setBedId(bedId);
+        Room room = new Room();
+        room.setId(roomId);
+        student.setRoom(room);
+        studentManagementDao.updateStudent(student);
+        return true;
+    }
+
+    @Override
+    public boolean removeStudentFromDormitory(Integer studentId, Integer roomId, Integer instructorId) {
+        Student student = studentManagementDao.searchStudentById(studentId);
+        if (student==null) {
+            return false;
+        }
+        student.setBedId(null);
+        student.setRoom(null);
+        studentManagementDao.updateStudent(student);
+        return true;
+    }
+
+    @Override
+    public boolean appointRoomLeader(Integer studentId, Integer roomId, Integer instructorId) {
+        Student student = studentManagementDao.searchStudentById(studentId);
+        if (student==null||student.getRoom().getId()!=roomId) {//student doesn't belong to the room
+            return false;
+        }
+        student.setRoomLeader(true);
+        studentManagementDao.updateStudent(student);
+        return true;
+    }
+
+
 }

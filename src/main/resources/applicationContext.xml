@@ -56,6 +56,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
         <!--配置Hibernate的映射文件-->
         <property name="mappingResources">
             <list>
+                <value>hbm/ElectricalApplianceUsage.hbm.xml</value>
                 <value>hbm/BorrowingKey.hbm.xml</value>
                 <value>hbm/DormitoryStaff.hbm.xml</value>
                 <value>hbm/DormitoryBuilding.hbm.xml</value>
@@ -83,6 +84,12 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
     <bean id="SanitaryStatusAction" class="com.action.SanitaryStatusAction" scope="prototype">
         <property name="sanitaryStatusService" ref="sanitaryStatusService"/>
     </bean>
+    <bean id="ElectricalApplianceUsageAction" class="com.action.ElectricalApplianceUsageAction" scope="prototype">
+        <property name="electricalApplianceUsageService" ref="electricalApplianceUsageService"/>
+    </bean>
+    <bean id="UserAction" class="com.action.UserAction" scope="prototype">
+        <property name="userService" ref="userService"/>
+    </bean>
     <!--<bean id="fileDownloadAction" class="com.action.FileDownloadAction" scope="prototype">-->
         <!--<property name="fileDownloadService" ref="fileDownloadService"/>-->
     <!--</bean>-->
@@ -97,9 +104,21 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
     <!--配置Service层的类-->
     <bean id="sanitaryStatusService" class="com.service.Impl.SanitaryStatusServiceImpl">
     <property name="sanitaryStatusDao" ref="sanitaryStatusDao"/>
+        <property name="roomDao" ref="roomDao"/>
     </bean>
+
     <bean id="studentManagementService" class="com.service.Impl.StudentManagementServiceImpl">
         <property name="studentManagementDao" ref="studentManagementDao"/>
+        <property name="roomDao" ref="roomDao"/>
+    </bean>
+
+    <bean id="electricalApplianceUsageService" class="com.service.Impl.ElectricalApplianceUsageServiceImpl">
+        <property name="electricalApplianceUsageDao" ref="electricalApplianceUsageDao"/>
+        <property name="studentManagementDao" ref="studentManagementDao"/>
+    </bean>
+
+    <bean id="userService" class="com.service.Impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
     </bean>
     <!--<bean id="accountService" class="com.service.Impl.AccountServiceImpl">-->
         <!--<property name="accountDao" ref="accountDao"/>-->
@@ -123,6 +142,16 @@ http://www.springframework.org/schema/tx/spring-tx.xsd http://www.alibaba.com/sc
     <bean id="sanitaryStatusDao" class="com.dao.Impl.SanitaryStatusDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    <bean id="roomDao" class="com.dao.Impl.RoomDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="electricalApplianceUsageDao" class="com.dao.Impl.ElectricalApplianceUsageDaoImpl">
+    <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="userDao" class="com.dao.Impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
     <!--<bean id="accountDao" class="com.dao.Impl.AccountDaoImpl">-->
         <!--<property name="sessionFactory" ref="sessionFactory"/>-->
     <!--</bean>-->

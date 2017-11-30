@@ -6,7 +6,7 @@ import java.util.List;
  * Created by zhanzhicheng on 11/5/2017.
  * Git
  */
-public class Instructor extends User{
+public class Instructor extends User {
 
 
     private Integer chargedBuildingId;

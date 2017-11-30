@@ -4,7 +4,7 @@ import com.dao.SanitaryStatusDao;
 import com.pojo.SanitaryStatus;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+
 import java.util.List;
 
 /**
@@ -23,4 +23,12 @@ public class SanitaryStatusDaoImpl extends HibernateDaoSupport implements Sanita
         }
         return sanitaryStatuses;
     }
+
+    @Override
+    public boolean addSanitaryStatus(SanitaryStatus sanitaryStatus) {
+        getHibernateTemplate().save(sanitaryStatus);
+        return true;
+    }
+
+
 }

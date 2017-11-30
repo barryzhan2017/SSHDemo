@@ -8,7 +8,7 @@
             <generator class="identity"></generator>
         </id>
 
-        <property name="roomId" column="room_id" type="java.lang.String"/>
+        <property name="roomName" column="room_name" type="java.lang.String"/>
         <property name="size" column="size" type="java.lang.Integer"/>
         <property name="gender" column="gender" type="java.lang.String"/>
 
@@ -16,19 +16,19 @@
 
         <many-to-one name="dormitoryBuilding" column="building_id" class="com.pojo.DormitoryBuilding" lazy="false"/>
 
-        <list name="repairingEquipments" cascade="all" lazy="false">
+        <list name="repairingEquipments" cascade="all" >
             <key column="room_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.RepairingEquipment"/>
         </list>
 
-        <list name="sanitaryStatuses" cascade="all" lazy="false">
+        <list name="sanitaryStatuses" cascade="all" >
             <key column="room_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.SanitaryStatus"/>
         </list>
 
-        <list name="students" cascade="all" lazy="false">
+        <list name="students" cascade="all">
             <key column="room_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.Student"/>
