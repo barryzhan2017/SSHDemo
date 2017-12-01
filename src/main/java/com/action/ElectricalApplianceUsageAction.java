@@ -77,6 +77,7 @@ public class ElectricalApplianceUsageAction {
 
         Integer ElectricalApplianceUsageId = Integer.valueOf(ServletActionContext.getRequest().getParameter("id"));
         String newSituation = ServletActionContext.getRequest().getParameter("newSituation");
+        System.out.println(newSituation);
         Map session = ActionContext.getContext().getSession();
         Integer id = (Integer) session.get("id");
         String type = (String )session.get("type");

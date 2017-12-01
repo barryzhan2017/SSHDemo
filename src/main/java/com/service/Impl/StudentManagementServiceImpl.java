@@ -39,7 +39,7 @@ public class StudentManagementServiceImpl implements StudentManagementService {
         Student student1 = studentManagementDao.searchStudentById(studentId1);
         Student student2 = studentManagementDao.searchStudentById(studentId2);
         //go on changing when students exist, they live in dormitory,their genders are same.
-        if (student1!=null&&student2!=null&&student1.getRoom()!=null&&student2.getRoom()!=null&&!student1.getGender().equals(student2.getGender())) {
+        if (student1!=null&&student2!=null&&student1.getRoom()!=null&&student2.getRoom()!=null&&student1.getGender().equals(student2.getGender())) {
             Room room = student1.getRoom();
             Integer bedId = student1.getBedId();
             student1.setRoom(student2.getRoom());

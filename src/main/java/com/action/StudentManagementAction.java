@@ -37,21 +37,21 @@ public class StudentManagementAction {
         this.studentManagementService = studentManagementService;
     }
 
-//    //Change dormitory is designed to change two given students to the other's dormitory
-//    @Action(value = "changeDormitory", results = { @Result(type = "json", params = { "root", "dataMap" }) })
-//    public String changeDormitory() throws Exception {
-//        this.dataMap = new HashMap<>();
-//        Integer studentId1 = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId1"));
-//        Integer studentId2 = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId2"));
-//        Boolean result = studentManagementService.changeDormitory(studentId1,studentId2);
-//        if (result) {
-//            dataMap.put("result", "success");
-//        }
-//        else {
-//            dataMap.put("result","fail");//if some student doesn't  exists
-//        }
-//        return "success";
-//    }
+    //Change dormitory is designed to change two given students to the other's dormitory
+    @Action(value = "changeDormitory", results = { @Result(type = "json", params = { "root", "dataMap" }) })
+    public String changeDormitory() throws Exception {
+        this.dataMap = new HashMap<>();
+        Integer studentId1 = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId1"));
+        Integer studentId2 = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId2"));
+        Boolean result = studentManagementService.changeDormitory(studentId1,studentId2);
+        if (result) {
+            dataMap.put("result", "success");
+        }
+        else {
+            dataMap.put("result","fail");//if some student doesn't  exists
+        }
+        return "success";
+    }
 
     @Action(value = "add", results = {@Result(type = "json", params = {"root", "dataMap"})})
     public String addStudentToDormitory() throws Exception {
@@ -105,19 +105,43 @@ public class StudentManagementAction {
 
     @Action(value = "remove", results = {@Result(type = "json", params = {"root", "dataMap"})})
     public String removeStudentFromDormitory() throws Exception {
-        this.dataMap = new HashMap<String, Object>();
-        Integer studentId = Integer.valueOf(ServletActionContext.getRequest().getParameter("studentId"));
-        Integer roomId = Integer.valueOf(ServletActionContext.getRequest().getParameter("roomId"));
+        this.dataMap = new HashMap<>();
+        String studentIdString = (ServletActionContext.getRequest().getParameter("studentId"));
+        String[] studentIdRaw = studentIdString.split(",");
+        List<Integer> studentIds = new ArrayList<>();
+        for (String s: studentIdRaw) {
+            studentIds.add(Integer.valueOf(s));
+        }
+
+        String roomIdString = (ServletActionContext.getRequest().getParameter("roomId"));
+        String[] roomIdRaw = roomIdString.split(",");
+        List<Integer> roomIds = new ArrayList<>();
+        for (String s: roomIdRaw) {
+            roomIds.add(Integer.valueOf(s));
+        }
+
         Map session = ActionContext.getContext().getSession();
         Integer id = (Integer) session.get("id");
         String type = (String) session.get("type");
-        if (id != null & type != null && studentManagementService.removeStudentFromDormitory(studentId, roomId, id)) {
-            dataMap.put("status", "success");
-            dataMap.put("code", "200");
-        } else {
+        if (id == null || type == null) {
             dataMap.put("status", "fail");
             dataMap.put("code", "203");
+            return "success";
         }
+
+        for (int i = 0; i < studentIds.size(); ++i) {
+            if (!studentManagementService.removeStudentFromDormitory(studentIds.get(i), roomIds.get(i), id)) {
+                System.out.println("Remove fails at " + i);
+                System.out.println("Room Ids: " + roomIds);
+                System.out.println("Student Ids: " + studentIds);
+                dataMap.put("status", "fail");
+                dataMap.put("code", "203");
+                return "success";
+            }
+        }
+
+        dataMap.put("status", "success");
+        dataMap.put("code", "200");
         return "success";
     }
 
