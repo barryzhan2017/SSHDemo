@@ -24,7 +24,7 @@
 
         <list name="sanitaryStatuses" cascade="all" lazy="false">
             <key column="room_id"/>
-            <index column="[index]" type="java.lang.Integer"/>
+            <index column="id" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.SanitaryStatus"/>
         </list>
 

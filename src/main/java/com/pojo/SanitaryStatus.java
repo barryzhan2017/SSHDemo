@@ -11,7 +11,7 @@ public class SanitaryStatus {
     private Date date;
     private Integer score;
     private Instructor instructor;
-    private Integer index = 1;
+//    private Integer index = 1;
 
     public SanitaryStatus() {
 
@@ -58,11 +58,11 @@ public class SanitaryStatus {
         this.score = score;
     }
 
-    public Integer getIndex() {
-        return index;
-    }
-
-    public void setIndex(Integer index) {
-        this.index = index;
-    }
+//    public Integer getIndex() {
+//        return index;
+//    }
+//
+//    public void setIndex(Integer index) {
+//        this.index = index;
+//    }
 }

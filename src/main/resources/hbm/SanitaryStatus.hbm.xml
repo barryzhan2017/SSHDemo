@@ -9,6 +9,7 @@
         </id>
         <property name="score" column="score" type="java.lang.Integer"/>
         <property name="date" column="date" type="java.util.Date"/>
+        <!--<property name="index" column="index" type="java.lang.Integer"/>-->
         <many-to-one name="room" column="room_id" class="com.pojo.Room" lazy="false"/>
         <many-to-one name="instructor" column="instructor_id" class="com.pojo.Instructor" lazy="false"/>
     </class>
