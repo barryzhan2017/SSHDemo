@@ -1,6 +1,7 @@
 package com.action;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.pojo.User;
 import com.service.StudentManagementService;
 import com.service.UserService;
 import org.apache.struts2.ServletActionContext;
@@ -54,5 +55,23 @@ public class UserAction {
         return "success";
     }
 
+    @Action(value = "info", results = { @Result(type = "json", params = { "root", "dataMap" }) })
+    public String getUser() throws Exception {
+        this.dataMap = new HashMap<String, Object>();
+        Map session = ActionContext.getContext().getSession();
+        Integer id = (Integer) session.get("id");
+        String type = (String) session.get("type");
+        if (id == null || type == null) {
+            dataMap.put("status", "fail");
+            dataMap.put("code", "203");
+            return "success";
+        }
 
+        User user = userService.getUser(id, type);
+        dataMap.put("username", user.getName());
+        dataMap.put("userAccount", user.getAccount());
+        dataMap.put("userId", user.getId());
+        dataMap.put("type", type);
+        return "success";
+    }
 }

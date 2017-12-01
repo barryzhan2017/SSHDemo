@@ -1,6 +1,8 @@
 package com.service;
 
+import com.pojo.Room;
 import com.pojo.Student;
+import com.pojo.User;
 
 import java.util.List;
 
@@ -14,4 +16,8 @@ public interface StudentManagementService {
     boolean addStudentToDormitory(Integer studentId, Integer roomId, Integer bedId, Integer instructorId);
     boolean removeStudentFromDormitory(Integer studentId, Integer roomId, Integer id);
     boolean appointRoomLeader(Integer studentId, Integer roomId, Integer id);
+    Student getRoomLeader(int roomId);
+
+    Room getRoomById(int id);
+    List<Room> getAllRooms();
 }

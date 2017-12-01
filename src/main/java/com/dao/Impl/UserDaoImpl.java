@@ -6,7 +6,9 @@ import com.pojo.User;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhanzhicheng on 11/27/2017.
@@ -37,5 +39,28 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
             return -1;
         }
         return user.getId();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public User getUser(int id, String type) {
+        String hql;
+        if (type == null || type.isEmpty()) {
+            return null;
+        }
+        if (type.equals("instructor")) {
+            hql = "from  Instructor instructor where instructor.id=?";
+        }
+        else if (type.equals("dormitoryStaff")) {
+            hql = "from  DormitoryStaff ds where ds.id=?";
+        }
+        else if (type.equals("systemAdministrator")) {
+            hql = "from  SystemAdministrator sa where sa.id=?";
+        }
+        else {
+            return null;
+        }
+
+        return ((List<User>) getHibernateTemplate().find(hql, new Object[] {id})).get(0);
     }
 }

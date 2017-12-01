@@ -9,12 +9,12 @@
         <property name="name" column="name" type="java.lang.String"/>
         <property name="account" column="account" type="java.lang.String"/>
         <property name="password" column="password" type="java.lang.String"/>
-        <list name="instructors" cascade="all">
+        <list name="instructors" cascade="all" lazy="false">
             <key column="system_administrator_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.Instructor"/>
         </list>
-        <list name="dormitoryStaffs" cascade="all">
+        <list name="dormitoryStaffs" cascade="all" lazy="false">
             <key column="system_administrator_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.DormitoryStaff"/>

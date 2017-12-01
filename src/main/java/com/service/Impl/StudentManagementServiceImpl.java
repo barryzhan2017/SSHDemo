@@ -100,5 +100,28 @@ public class StudentManagementServiceImpl implements StudentManagementService {
         return true;
     }
 
+    @Override
+    public Room getRoomById(int id) {
+        return roomDao.getRoomById(id);
+    }
 
+    @Override
+    public Student getRoomLeader(int roomId) {
+        return roomDao.getRoomLeader(roomId);
+    }
+
+    @Override
+    public List<Room> getAllRooms() {
+        List<Room> result = roomDao.getAllRooms();
+        for (Room room: result) {
+            if (room.getStudents().size() > 0) {
+                System.out.println(room.getStudents());
+                if (room.getStudents().get(0) == null) {
+                    room.getStudents().remove(0);
+                }
+            }
+        }
+
+        return result;
+    }
 }

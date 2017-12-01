@@ -1,9 +1,11 @@
 package com.action;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.pojo.Room;
 import com.pojo.SanitaryStatus;
 import com.pojo.Student;
 import com.service.SanitaryStatusService;
+import com.service.StudentManagementService;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
@@ -23,6 +25,7 @@ import java.util.*;
 public class SanitaryStatusAction {
     private Map<String,Object> dataMap;
     SanitaryStatusService sanitaryStatusService;
+    StudentManagementService studentManagementService;
 
 
     public Map<String, Object> getDataMap() {
@@ -39,6 +42,14 @@ public class SanitaryStatusAction {
 
     public void setSanitaryStatusService(SanitaryStatusService sanitaryStatusService) {
         this.sanitaryStatusService = sanitaryStatusService;
+    }
+
+    public StudentManagementService getStudentManagementService() {
+        return studentManagementService;
+    }
+
+    public void setStudentManagementService(StudentManagementService studentManagementService) {
+        this.studentManagementService = studentManagementService;
     }
 
     //add sanitary status of a home
@@ -66,7 +77,6 @@ public class SanitaryStatusAction {
     }
 
 
-
     //display all room sanitary statuses for specific instructor
     @Action(value = "display", results = { @Result(type = "json", params = { "root", "dataMap" }) })
     public String display() throws Exception {
@@ -87,9 +97,13 @@ public class SanitaryStatusAction {
                         Integer roomId = sanitaryStatus.getRoom().getId();
                         sanitaryStatusMap.put("roomId",roomId);
                         sanitaryStatusMap.put("roomName",sanitaryStatus.getRoom().getRoomName());
+                        Student roomLeader = studentManagementService.getRoomLeader(roomId);
+                        sanitaryStatusMap.put("roomLeader", roomLeader == null ? "(None)" : roomLeader.getName());
+
+                        // sanitary records
                         ArrayList<Map<String, Object>> roomInfo = new ArrayList<Map<String, Object>>();
                         for (SanitaryStatus innerSanitaryStatus:sanitaryStatuses) {
-                            if (innerSanitaryStatus.getRoom().getId()==roomId) {//find the room with same id
+                            if (innerSanitaryStatus.getRoom().getId().equals(roomId)) {//find the room with same id
                                 Map<String,Object> innerSanitaryStatusMap = new HashMap<String, Object>();
                                 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
                                 innerSanitaryStatusMap.put("date",sdf.format(innerSanitaryStatus.getDate()));

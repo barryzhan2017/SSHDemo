@@ -34,4 +34,9 @@ public class UserServiceImpl implements UserService{
             return true;
         }
     }
+
+    @Override
+    public User getUser(int id, String type) {
+        return userDao.getUser(id, type);
+    }
 }

@@ -16,19 +16,19 @@
 
         <many-to-one name="dormitoryBuilding" column="building_id" class="com.pojo.DormitoryBuilding" lazy="false"/>
 
-        <list name="repairingEquipments" cascade="all" >
+        <list name="repairingEquipments" cascade="all" lazy="false">
             <key column="room_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.RepairingEquipment"/>
         </list>
 
-        <list name="sanitaryStatuses" cascade="all" >
+        <list name="sanitaryStatuses" cascade="all" lazy="false">
             <key column="room_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.SanitaryStatus"/>
         </list>
 
-        <list name="students" cascade="all">
+        <list name="students" cascade="all" lazy="false">
             <key column="room_id"/>
             <index column="[index]" type="java.lang.Integer"/>
             <one-to-many class="com.pojo.Student"/>
